@@ -10,15 +10,15 @@ and storing a cookie to be used to access the rest of the API.
 # Introduction
 
 All request URLs are in the form
-ajax.php?action=<action>`.
+`ajax.php?action=<action>`.
 
 All the JSON returned is in the form
 ```json
 {
-    "status": "success",
-    "response": {
-	// data
-    }
+  "status": "success",
+  "response": {
+    # data
+  }
 }
 ```
 
@@ -95,7 +95,7 @@ also contains other undocumented endpoints:
 
 ## Better
 
-Fetch various better.php info.
+Fetch better.php (suggested torrent improvements).
 
 
 **Request**

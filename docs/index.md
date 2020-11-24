@@ -1,0 +1,153 @@
+The JSON API provides an easily parseable interface to BioTorrents.de.
+Below is the list of information available, then arguments that can be passed to it, and the format of the results.
+
+You must be logged in to use the API.
+This is done by sending a POST request to
+`https://biotorrents.de/login.php` with `username` and `password`
+and storing a cookie to be used to access the rest of the API.
+
+
+# Introduction
+
+All request URLs are in the form
+ajax.php?action=<action>`.
+
+All the JSON returned is in the form
+```json
+{
+    "status": "success",
+    "response": {
+	// data
+    }
+}
+```
+
+If the request is invalid, or a problem occurs, the `status` will be `failure`.
+In this case the value of `response` is `undefined`.
+
+
+# Libraries
+
+These are the current public projects listed on the
+[What.CD Gazelle wiki](https://github.com/WhatCD/Gazelle/wiki/JSON-API-Documentation).
+Questions about the API can be answered in `#development` on
+[Slack](https://join.slack.com/t/biotorrents/shared_invite/enQtODY2Mzg5NzI2OTk5LWQ0NmRlYzZmYTYwMzc3MjJlMzc4ZGJkNzQ1OWE4NDAxYTc3ZTdjY2NkOGRjNDA5MDAxZTA1Y2Y3M2MzMzIwZGY).
+
+Please get it touch if you'd like me to list your project below.
+
+
+| Language	| GitHub |
+| :--		| :-- |
+| C#		| [frankston/WhatAPI](https://github.com/frankston/WhatAPI) |
+| Go		| [kdvh/whatapi](https://github.com/kdvh/whatapi) |
+| JavaScript	| [deoxxa/whatcd](https://github.com/deoxxa/whatcd) |
+| Java		| [Gwindow/WhatAPI](https://github.com/Gwindow/WhatAPI) |
+| PHP		| [Jleagle/gazelle-api-client](https://github.com/Jleagle/gazelle-api-client) |
+| Python	| [isaaczafuta/whatapi](https://github.com/isaaczafuta/whatapi) |
+| Ruby		| [chasemgray/RubyGazelle](https://github.com/chasemgray/RubyGazelle) |
+
+
+# Caveats
+
+**Abusing or using this API for malicious purposes is a bannable offense and will not be taken lightly.**
+
+
+## Rate limit
+
+The JSON API is rate-limited to one request every ten seconds.
+This limit doesn't apply to the Donor class.
+
+
+## Under construction
+
+Some endpoints aren't working correctly right now:
+
+- artist
+- preview
+
+[Oppaitime Gazelle](https://git.oppaiti.me/Oppaitime/Gazelle)
+also contains other undocumented endpoints:
+
+- get_friends
+- news_ajax
+- send_recommendation
+
+
+# Not implemented
+
+## Similar artists
+
+**Request**
+
+`ajax.php?action=similar_artists`
+
+`&id=` — id of artist (required)
+
+`&limit=` — maximum number of results to return (fewer might be returned)
+
+
+**Response**
+
+```json
+
+```
+
+
+## Better
+
+Fetch various better.php info.
+
+
+**Request**
+
+`ajax.php?action=better`
+
+
+**Response**
+
+```json
+
+```
+
+
+
+## Torrent info
+
+**Request**
+
+`ajax.php?action=torrent_info`
+
+
+**Response**
+
+```json
+
+```
+
+
+## Check private
+
+**Request**
+
+`ajax.php?action=checkprivate`
+
+
+**Response**
+
+```json
+
+```
+
+
+## Vote favorite
+
+**Request**
+
+`ajax.php?action=votefavorite`
+
+
+**Response**
+
+```json
+
+```

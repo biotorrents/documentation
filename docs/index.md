@@ -1,18 +1,23 @@
-The JSON API provides an easily parseable interface to BioTorrents.de.
-Below is the list of information available, then arguments that can be passed to it, and the format of the results.
+The JSON API provides an easily parseable interface to [BioTorrents.de](https://biotorrents.de).
+Please use the navigation menu to find lists of endpoints, their arguments, and example responses.
 
 You must be logged in to use the API.
 This is done by sending a POST request to
-`https://biotorrents.de/login.php` with `username` and `password`
+
+`https://biotorrents.de/login.php`
+
+with `username` and `password`
 and storing a cookie to be used to access the rest of the API.
 
 
 # Introduction
 
 All request URLs are in the form
-`ajax.php?action=<action>`.
+
+`ajax.php?action=<action>`
 
 All the JSON returned is in the form
+
 ```json
 {
   "status": "success",
@@ -54,23 +59,23 @@ Please get it touch if you'd like me to list your project below.
 
 ## Rate limit
 
-The JSON API is rate-limited to one request every ten seconds.
-This limit doesn't apply to the Donor class.
+The API is rate-limited to one request every ten seconds.
+This limit doesn't apply to users in the Donor class.
 
 
 ## Under construction
 
 Some endpoints aren't working correctly right now:
 
-- artist
-- preview
+- `artist`
+- `preview`
 
 [Oppaitime Gazelle](https://git.oppaiti.me/Oppaitime/Gazelle)
 also contains other undocumented endpoints:
 
-- get_friends
-- news_ajax
-- send_recommendation
+- `get_friends`
+- `news_ajax`
+- `send_recommendation`
 
 
 # Not implemented

@@ -7,7 +7,7 @@ Endpoints related to the forums.
 
 **Request**
 
-`ajax.php?action=forum&type=main`
+`ajax.php?action=forum`
 
 
 **Response**

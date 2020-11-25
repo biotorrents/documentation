@@ -163,8 +163,8 @@ Endpoints related to torrents.
 
 ## Browse (search)
 
-Note that BioTorrents.de still uses Oppaitime metadata under the hood.
-These docs are adapted from What.CD, an older and different distribution.
+Note that [BioTorrents.de](https://biotorrents.de) still uses Oppaitime metadata behind the scenes.
+These docs are also adapted from What.CD, an older and different distribution.
 The advanced search options are certain to change in the future.
 
 
@@ -372,7 +372,7 @@ Fetch comments from torrent pages.
 
 Under construction as of 2020-11-24.
 Currently not returning the artist's torrent groups.
-Please see the below reponse for details.
+Please see the response below for details.
 
 
 **Request**
@@ -433,19 +433,268 @@ Fetch the Top 10 torrents, tags, or users.
 **Response**
 
 ```json
-
+{
+    "status": "success",
+    "response": [
+        {
+            "caption": "Most Active Torrents Uploaded in the Past Day",
+            "tag": "day",
+            "limit": 10,
+            "results": [
+                {
+                    "torrentId": 67,
+                    "groupId": 57,
+                    "author": "Production Sanborn LLC",
+                    "groupName": "Massachusetts 1:5,000 Color Ortho Imagery",
+                    "groupCategory": 9,
+                    "groupYear": 2005,
+                    "platform": "Other",
+                    "tags": [
+                        "data.science",
+                        "one.shot",
+                        "true.color",
+                        "massachusetts",
+                        "geography"
+                    ],
+                    "snatched": 0,
+                    "seeders": 2,
+                    "leechers": 0,
+                    "data": 0,
+                    "size": 24759011328,
+                    "picture": ""
+                },
+                {
+                    "torrentId": 18,
+                    "groupId": 18,
+                    # etc.
+                },
+                # etc.
+            ]
+        },
+        {
+            "caption": "Most Active Torrents Uploaded in the Past Week",
+            "tag": "week",
+            "limit": 10,
+            "results": [
+                {
+                    "torrentId": 30,
+                    "groupId": 15,
+                    # etc.
+                },
+                {
+                    "torrentId": 32,
+                    "groupId": 27,
+                    # etc.
+                },
+                # etc.
+            ]
+        },
+        {
+            "caption": "Most Active Torrents of All Time",
+            "tag": "overall",
+            "limit": 10,
+            "results": [
+                {
+                    "torrentId": 1,
+                    "groupId": 1,
+                    # etc.
+                },
+                {
+                    "torrentId": 25,
+                    "groupId": 25,
+                    # etc.
+                },
+                # etc.
+            ]
+        },
+        {
+            "caption": "Most Snatched Torrents",
+            "tag": "snatched",
+            "limit": 10,
+            "results": [
+                {
+                    "torrentId": 40,
+                    "groupId": 32,
+                    # etc.
+                },
+                {
+                    "torrentId": 43,
+                    "groupId": 34,
+                    # etc.
+                },
+                # etc.
+            ]
+        },
+        {
+            "caption": "Most Data Transferred Torrents",
+            "tag": "data",
+            "limit": 10,
+            "results": [
+                {
+                    "torrentId": 28,
+                    "groupId": 17,
+                    # etc.
+                },
+                {
+                    "torrentId": 10,
+                    "groupId": 10,
+                    # etc.
+                },
+                # etc.
+            ]
+        },
+        {
+            "caption": "Best Seeded Torrents",
+            "tag": "seeded",
+            "limit": 10,
+            "results": [
+                {
+                    "torrentId": 50,
+                    "groupId": 40,
+                    # etc.
+                },
+                {
+                    "torrentId": 48,
+                    "groupId": 38,
+                    # etc.
+                },
+                # etc.
+            ]
+        }
+    ]
+}
 ```
 
 
 ### Tags
 
 ```json
-
+{
+    "status": "success",
+    "response": [
+        {
+            "caption": "Most Used Torrent Tags",
+            "tag": "ut",
+            "limit": 10,
+            "results": [
+                {
+                    "name": "one.shot",
+                    "uses": 24
+                },
+                {
+                    "name": "humans",
+                    "uses": 22
+                },
+                {
+                    "name": "data.science",
+                    "uses": 20
+                },
+                # etc.
+            ]
+        },
+        {
+            "caption": "Most Used Request Tags",
+            "tag": "ur",
+            "limit": 10,
+            "results": [
+                {
+                    "name": "coding",
+                    "uses": 2
+                },
+                {
+                    "name": "biochemistry",
+                    "uses": 2
+                },
+                {
+                    "name": "plants",
+                    "uses": 1
+                },
+                # etc.
+            ]
+        }
+    ]
+}
 ```
 
 
 ### Users
 
-```json
+Usernames are masked to `null` in the output unless you have moderator permissions.
 
+```json
+{
+    "status": "success",
+    "response": [
+        {
+            "caption": "Uploaders",
+            "tag": "ul",
+            "limit": 10,
+            "results": [
+                {
+                    "id": 28,
+                    "username": "seedbox",
+                    "uploaded": 100918879562,
+                    "upSpeed": 4893.906,
+                    "downloaded": 12327881516,
+                    "downSpeed": 600.9437,
+                    "numUploads": 0,
+                    "joinDate": "2020-04-01 15:50:04"
+                },
+                # etc.
+            ]
+        },
+        {
+            "caption": "Downloaders",
+            "tag": "dl",
+            "limit": 10,
+            "results": [
+                {
+                    "id": 28,
+                    "username": "seedbox",
+                    # etc.
+                },
+                # etc.
+            ]
+        },
+        {
+            "caption": "Torrents Uploaded",
+            "tag": "numul",
+            "limit": 10,
+            "results": [
+                {
+                    "id": 28,
+                    "username": "seedbox",
+                    # etc.
+                },
+                # etc.
+            ]
+        },
+        {
+            "caption": "Fastest Uploaders",
+            "tag": "uls",
+            "limit": 10,
+            "results": [
+                {
+                    "id": 28,
+                    "username": "seedbox",
+                    # etc.
+                },
+                # etc.
+            ]
+        },
+        {
+            "caption": "Fastest Downloaders",
+            "tag": "dls",
+            "limit": 10,
+            "results": [
+                {
+                    "id": 28,
+                    "username": "seedbox",
+                    # etc.
+                },
+                # etc.
+            ]
+        }
+    ]
+}
 ```

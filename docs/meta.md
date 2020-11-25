@@ -1,6 +1,6 @@
 # Meta
 
-Endpoints related to BioTorrents.de itself.
+Endpoints related to [BioTorrents.de](https://biotorrents.de) itself.
 
 
 ## Index
@@ -162,7 +162,7 @@ Fetch the recent news and blogs.
 
 ## Wiki
 
-Note that either `id` or `name` is required.
+Either `id` or `name` is required.
 
 **Request**
 

@@ -491,8 +491,20 @@ Fetch bookmarked torrents or artists.
 
 **Response**
 
-```json
+```php
+# Currently no proper status response.
+# Please see the code snippet below:
 
+switch ($Type) {
+  case NotificationsManager::INBOX:
+    NotificationsManager::clear_inbox();
+    break;
+
+  case NotificationsManager::NEWS:
+    NotificationsManager::clear_news(false);
+    break;
+
+  # etc.
 ```
 
 

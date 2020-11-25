@@ -59,8 +59,10 @@ Please get it touch if you'd like me to list your project below.
 
 ## Rate limit
 
-The API is rate-limited to one request every ten seconds.
+The API is rate-limited to one request every 12 seconds.
 This limit doesn't apply to users in the Donor class.
+[Please consider donating](https://www.patreon.com/biotorrents)
+to support this scientific resource's development.
 
 
 ## Under construction

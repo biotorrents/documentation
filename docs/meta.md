@@ -76,6 +76,41 @@ Fetch the homepage sidebar info.
 ```
 
 
+## Manifest
+
+Fetch an app manifest.
+
+
+**Request**
+
+`ajax.php?action=manifest`
+
+
+**Response**
+
+```json
+{
+    "status": "success",
+    "response": {
+        "name": "BioTorrents.de",
+        "short_name": "BioTorrents.de",
+        "description": "A platform to share biological sequence and medical imaging data",
+        "start_url": "index.php",
+        "display": "standalone",
+        "background_color": "#ffffff",
+        "theme_color": "#0288d1",
+        "icons": [
+            {
+                "src": "/static/common/icon.png",
+                "sizes": "120x120",
+                "type": "image/png"
+            }
+        ]
+    }
+}
+```
+
+
 ## Load average
 
 Requires moderator permissions to access without error.

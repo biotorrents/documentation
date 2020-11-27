@@ -442,6 +442,9 @@ Fetch bookmarked torrents or artists.
 
 ## Notifications
 
+Fetch new upload filter notifications.
+
+
 **Request**
 
 `ajax.php?action=notifications`
@@ -466,7 +469,18 @@ Fetch bookmarked torrents or artists.
 **Response**
 
 ```json
-
+{
+    "status": "success",
+    "response": {
+        "Global": {
+            "id": 0,
+            "message": "Global Notification",
+            "url": "https://docs.biotorrents.de",
+            "importance": "information"
+        },
+        # etc.
+    }
+}
 ```
 
 

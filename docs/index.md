@@ -1,14 +1,6 @@
 The JSON API provides an easily parseable interface to [BioTorrents.de](https://biotorrents.de).
 Please use the navigation menu to find lists of endpoints, their arguments, and example responses.
 
-You must be logged in to use the API.
-This is done by sending a POST request to
-
-`https://biotorrents.de/login.php`
-
-with `username` and `password`
-and storing a cookie to be used to access the rest of the API.
-
 
 # Introduction
 
@@ -23,12 +15,36 @@ All the JSON returned is in the form
   "status": "success",
   "response": {
     # data
+  },
+  "info": {
+    "source": "BioTorrents.de",
+    "version": 1
   }
 }
 ```
 
 If the request is invalid, or a problem occurs, the `status` will be `failure`.
 In this case the value of `response` is `undefined`.
+
+
+## Bearer token auth
+
+First, generate a token in your profile security settings and keep it safe.
+It's functionally a password and like a password, it can't be recovered later.
+Then POST an RFC 6750--compliant bearer token along with each GET api endpoint:
+
+```sh
+curl biotorrents.de/ajax.php?action=index \
+  -H "Accept: application/json" \
+  -H "Authorization: Bearer {token}"
+```
+
+
+## Cookie auth
+
+Please send a POST request to `https://biotorrents.de/login.php` with `username` and `password`,
+or acquire a cookie from a browser session using developer tools.
+Then store the cookie and use it to access the rest of the API.
 
 
 # Libraries

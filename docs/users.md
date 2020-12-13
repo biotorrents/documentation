@@ -520,25 +520,3 @@ switch ($Type) {
 
   # etc.
 ```
-
-
-## Password validate
-
-Is your current password acceptable?
-
-
-**Request**
-
-`ajax.php?action=password_validate`
-
-
-**Response**
-
-```json
-{
-    "status": "success",
-    "response": {
-        "pwValidate": "true"
-    }
-}
-```

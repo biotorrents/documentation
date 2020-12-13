@@ -199,6 +199,7 @@ Fetch the recent news and blogs.
 
 Either `id` or `name` is required.
 
+
 **Request**
 
 `ajax.php?action=wiki`
@@ -222,6 +223,71 @@ Either `id` or `name` is required.
         "authorName": "ohm",
         "date": "2020-11-13 18:46:06",
         "revision": 10
+    }
+}
+```
+
+
+## Ontology
+
+Fetch a site metadata blueprint.
+
+
+**Request**
+
+`ajax.php?action=ontology`
+
+
+**Response**
+
+```json
+{
+    "status": "success",
+    "response": {
+        "SEQ": {
+            "ID": 1,
+            "Name": "Sequences",
+            "Icon": "/static/common/bioicons/sequences.png",
+            "Platforms": {
+                "0": "Complete Genomics",
+                "1": "cPAS-BGI/MGI",
+                "2": "Helicos",
+                "3": "Illumina HiSeq",
+                # etc.
+            },
+            "Formats": {
+                "NucleoSeq": {
+                    "BAM": {
+                        "0": "bam"
+                    },
+                    "CRAM": {
+                        "0": "cram"
+                    },
+                    "EMBL": {
+                        "0": "embl"
+                    },
+                    # etc.
+                "ProtSeq": {
+                    "ABI/Sciex": {
+                        "0": "t2d",
+                        "1": "wiff"
+                    },
+                    "APML": {
+                        "0": "apml"
+                    },		    
+                    # etc.
+                },
+		# etc.
+            },
+            "Description": "For data that's ACGT, ACGU, amino acid letters on disk."
+        },
+        "GRF": {
+            "ID": 2,
+            "Name": "Graphs",
+            "Icon": "/static/common/bioicons/graphs.png",
+            # etc.
+        },
+        # etc.
     }
 }
 ```

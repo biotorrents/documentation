@@ -172,9 +172,9 @@ The advanced search options are certain to change in the future.
 
 `ajax.php?action=browse`
 
-`&page=` — page to display (default: `1`)
-
 `&searchstr=` — string to search for
+
+`&page=` — page to display (default: `1`)
 
 `taglist`, `tags_type`, `order_by`, `order_way`, `filter_cat`, `freetorrent`, `vanityhouse`, `scene`, `haslog`, `releasetype`, `media`, `format`, `encoding`, `artistname`, `filelist`, `groupname`, `recordlabel`, `cataloguenumber`, `year`, `remastertitle`, `remasteryear`, `remasterrecordlabel`, `remastercataloguenumber` — as in advanced search
 

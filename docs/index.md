@@ -30,8 +30,8 @@ In this case the value of `response` is `undefined`.
 ## Bearer token auth
 
 First, generate a token in your profile security settings and keep it safe.
-It's functionally a password and like a password, it can't be recovered later.
-Then POST an RFC 6750--compliant bearer token along with each GET api endpoint:
+It's functionally a password, and like a password, it can't be recovered later.
+Then POST an RFC 6750–compliant bearer token along with each GET request:
 
 ```sh
 curl biotorrents.de/ajax.php?action=index \
@@ -43,7 +43,7 @@ curl biotorrents.de/ajax.php?action=index \
 ## Cookie auth
 
 Please send a POST request to `https://biotorrents.de/login.php` with `username` and `password`,
-or acquire a cookie from a browser session using developer tools.
+or acquire a cookie from a browser session using the developer tools.
 Then store the cookie and use it to access the rest of the API.
 
 
@@ -75,7 +75,7 @@ Please get it touch if you'd like me to list your project below.
 
 ## Rate limit
 
-The API is rate-limited to one request every 12 seconds.
+The API is rate-limited to one request every 6 seconds.
 This limit doesn't apply to users in the Donor class.
 [Please consider donating](https://www.patreon.com/biotorrents)
 to support this scientific resource's development.

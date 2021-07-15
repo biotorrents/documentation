@@ -34,7 +34,7 @@ Sphinx 2.2.11-id64-release (95ae9a6)
 This section is done as root.
 If you're in a user shell, preface commands with `sudo`.
 
-## Upgrading to Debian unstable
+## Upgrading to Debian Sid
 
 Install the most recent
 [Debian netinst image](https://www.debian.org/CD/netinst/)
@@ -299,6 +299,15 @@ The applications would otherwise be an insecure jumble and hard to maintain.
 
 ## Gazelle
 
+Please use the
+[biotorrents/gazelle development branch](https://github.com/biotorrents/gazelle/tree/development)
+to grab the current working copy:
+
+```shell
+git clone --branch development https://github.com/biotorrents/gazelle.git
+git push origin development
+```
+
 First create the necessary files and folders.
 Note that locations are arbitrary and may be one of:
 home folder, subfolder of `/var/www`, etc.
@@ -344,7 +353,7 @@ When setting up Gazelle for the first time, these options must be enabled.
 
 Note the separate production and development values and the possibility of duplicate definitions.
 BioTorrents.de uses a singleton class with extended recursive ArrayObject support invoked by
-[$ENV = ENV::go()](https://github.com/biotorrents/gazelle/blob/development/classes/env.class.php).
+[`$ENV = ENV::go()`](https://github.com/biotorrents/gazelle/blob/development/classes/env.class.php).
 
 There are some other values to set up.
 Please pay attention to these values that Gazelle needs for proper function:
@@ -473,10 +482,10 @@ Note that LibTorrent 0.1x.y also covers rTorrent/ruTorrent and other clients tha
 | Transmission 3.xy | `-TR3`  |
 
 Most of the Toolbox pages don't write to the database and all of them should work.
-For more BitTorrents info see
+For more BitTorrent info see
 [Calomel's rTorrent hacking guide](https://calomel.org/rtorrent_mods.html).
 
-## Building this documentation
+## Building these docs
 
 [biotorrents/documentation](https://github.com/biotorrents/documentation)
 has the Mkdocs source code.

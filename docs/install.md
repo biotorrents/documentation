@@ -1,6 +1,6 @@
 # Install
 
-Thanks for your interest in BioTorrents.de development!
+Thanks for your interest in BioTorrents.de's development!
 Gazelle is notoriously difficult to install and good docs are lacking.
 This page, based on the
 [original announcement protocol](https://github.com/biotorrents/announcement),
@@ -445,7 +445,7 @@ The daemon runs on `localhost:34000` and Nginx TLS reverse proxies it to `localh
 
 Docs pending the completion of sitebot API integration.
 
-## Inside the Gazelle admin panel
+## Inside the Gazelle Toolbox
 
 At this point it should be possible to register for the site.
 The first account is the sysop so please act quickly here.

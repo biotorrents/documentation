@@ -1,13 +1,18 @@
-site_name: 'Docs ⸬ BioTorrents.de'
-site_url: 'https://docs.biotorrents.de'
+strict: true
 
-repo_name: 'Gazelle'
-repo_url: 'https://github.com/biotorrents/gazelle'
+site_name: "Docs ⸬ BioTorrents.de"
+site_url: "https://docs.biotorrents.de"
+
+repo_url: "https://github.com/biotorrents/gazelle"
+edit_uri: ""
 
 nav:
-  - 'index.md'
-  - 'torrents.md'
-  - 'users.md'
-  - 'forums.md'
-  - 'meta.md'
-  - 'install.md'
+  - "index.md"
+  - "torrents.md"
+  - "users.md"
+  - "forums.md"
+  - "meta.md"
+  - "install.md"
+
+markdown_extensions:
+  - smarty

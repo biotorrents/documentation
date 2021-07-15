@@ -5,7 +5,7 @@ Gazelle is notoriously difficult to install and good docs are lacking.
 This page, based on the
 [original announcement protocol](https://github.com/biotorrents/announcement),
 is an attempt to make an evergreen install guide.
-It's fast paced and covers only the essentials.
+It's fast paced and only covers the essentials.
 
 # Debian system profile
 
@@ -275,7 +275,7 @@ Install Sphinx with `apt install sphinxsearch`.
 
 The `/etc/sphinxsearch/sphinx.conf` content is too large to reasonably inline.
 Please find a copy at
-[biotorrents/documentation](https://github.com/biotorrents/documentation/blob/master/sphinx.conf).
+[biotorrents/documentation](https://github.com/biotorrents/documentation/blob/master/docs/dl/sphinx.conf).
 The only other Sphinx-related configs are root crontab entries:
 
 ```crontab
@@ -377,7 +377,7 @@ Then add `/var/www/bin` to the Gazelle user's `$PATH` and run:
 
 Install SassC with `apt install sassc`.
 
-[Download the font pack](https://docs.biotorrents.de/fonts.tgz)
+[Download the font pack](https://docs.biotorrents.de/dl/fonts.tgz)
 and extract it with:
 `tar zxvf fonts.tgz -C /var/www/html/dev.biotorrents.de/static/styles/assets/fonts`.
 
@@ -470,7 +470,15 @@ Note that LibTorrent 0.1x.y also covers rTorrent/ruTorrent and other clients tha
 | qBittorrent 3.x.y | `-qB3`  |
 | qBittorrent 4.x.y | `-qB4`  |
 | Transmission 2.xy | `-TR2`  |
+| Transmission 3.xy | `-TR3`  |
 
 Most of the Toolbox pages don't write to the database and all of them should work.
 For more BitTorrents info see
 [Calomel's rTorrent hacking guide](https://calomel.org/rtorrent_mods.html).
+
+## Building this documentation
+
+[biotorrents/documentation](https://github.com/biotorrents/documentation)
+has the Mkdocs source code.
+Install MkDocs with `apt install mkdocs`.
+Then do `mkdocs build`.

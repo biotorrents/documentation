@@ -2,7 +2,6 @@
 
 Endpoints related to torrents.
 
-
 ## Torrent
 
 **Request**
@@ -13,71 +12,69 @@ Endpoints related to torrents.
 
 `&hash=` — torrent's hash (must be uppercase)
 
-
 **Response**
 
 ```json
 {
-    "status": "success",
-    "response": {
-        "group": {
-            "description": "HTML",
-            "picture": "https://i.imgur.com/sF40cxi.png",
-            "id": 1,
-            "name": "Alcohol dehydrogenase ADH1",
-            "organism": "Saccharomyces cerevisiae",
-            "strain": "S288C",
-            "authors": [
-                {
-                    "id": 2,
-                    "name": "David Schild"
-                },
-                {
-                    "id": 1,
-                    "name": "Robert K. Mortimer"
-                }
-            ],
-            "year": 1985,
-            "accession": "YOL086C",
-            "categoryId": 1,
-            "categoryName": "Sequences",
-            "time": "2019-12-10 01:48:07",
-            "isBookmarked": false,
-            "tags": [
-                "coding",
-                "fungi",
-                "one.shot",
-                "organic.chemistry",
-                "protocol.available"
-            ]
+  "status": "success",
+  "response": {
+    "group": {
+      "description": "HTML",
+      "picture": "https://i.imgur.com/sF40cxi.png",
+      "id": 1,
+      "name": "Alcohol dehydrogenase ADH1",
+      "organism": "Saccharomyces cerevisiae",
+      "strain": "S288C",
+      "authors": [
+        {
+          "id": 2,
+          "name": "David Schild"
         },
-        "torrent": {
-            "id": 1,
-            "infoHash": "6A5413B9A0C5EF5B68BED6ABBB8112CBE3870647",
-            "platform": "Sanger",
-            "format": "FASTA",
-            "license": "Public Domain",
-            "scope": "Contig",
-            "annotated": false,
-            "archive": "None",
-            "fileCount": 4,
-            "size": 5754,
-            "seeders": 5,
-            "leechers": 0,
-            "snatched": 3,
-            "freeTorrent": false,
-            "reported": false,
-            "time": "2019-12-10 01:48:08",
-            "description": "HTML",
-            "fileList": "S288C_YOL086C_ADH1_coding.fsa{{{1095}}}|||S288C_YOL086C_ADH1_flanking.fsa{{{3157}}}|||S288C_YOL086C_ADH1_genomic.fsa{{{1117}}}|||S288C_YOL086C_ADH1_protein.fsa{{{385}}}",
-            "filePath": "ADH1 - YOL086C",
-            "userId": 0,
-            "username": "Anonymous"
+        {
+          "id": 1,
+          "name": "Robert K. Mortimer"
         }
+      ],
+      "year": 1985,
+      "accession": "YOL086C",
+      "categoryId": 1,
+      "categoryName": "Sequences",
+      "time": "2019-12-10 01:48:07",
+      "isBookmarked": false,
+      "tags": [
+        "coding",
+        "fungi",
+        "one.shot",
+        "organic.chemistry",
+        "protocol.available"
+      ]
+    },
+    "torrent": {
+      "id": 1,
+      "infoHash": "6A5413B9A0C5EF5B68BED6ABBB8112CBE3870647",
+      "platform": "Sanger",
+      "format": "FASTA",
+      "license": "Public Domain",
+      "scope": "Contig",
+      "annotated": false,
+      "archive": "None",
+      "fileCount": 4,
+      "size": 5754,
+      "seeders": 5,
+      "leechers": 0,
+      "snatched": 3,
+      "freeTorrent": false,
+      "reported": false,
+      "time": "2019-12-10 01:48:08",
+      "description": "HTML",
+      "fileList": "S288C_YOL086C_ADH1_coding.fsa{{{1095}}}|||S288C_YOL086C_ADH1_flanking.fsa{{{3157}}}|||S288C_YOL086C_ADH1_genomic.fsa{{{1117}}}|||S288C_YOL086C_ADH1_protein.fsa{{{385}}}",
+      "filePath": "ADH1 - YOL086C",
+      "userId": 0,
+      "username": "Anonymous"
     }
+  }
 }
 ```
-
 
 ## Torrent group
 
@@ -88,7 +85,6 @@ Endpoints related to torrents.
 `&id=` — torrent's group id (required)
 
 `&hash=` — hash of a torrent in the torrent group (must be uppercase)
-
 
 **Response**
 
@@ -160,13 +156,11 @@ Endpoints related to torrents.
 }
 ```
 
-
 ## Browse (search)
 
 Note that [BioTorrents.de](https://biotorrents.de) still uses Oppaitime metadata behind the scenes.
 These docs are also adapted from What.CD, an older and different distribution.
 The advanced search options are certain to change in the future.
-
 
 **Request**
 
@@ -177,7 +171,6 @@ The advanced search options are certain to change in the future.
 `&page=` — page to display (default: `1`)
 
 `taglist`, `tags_type`, `order_by`, `order_way`, `filter_cat`, `freetorrent`, `vanityhouse`, `scene`, `haslog`, `releasetype`, `media`, `format`, `encoding`, `artistname`, `filelist`, `groupname`, `recordlabel`, `cataloguenumber`, `year`, `remastertitle`, `remasteryear`, `remasterrecordlabel`, `remastercataloguenumber` — as in advanced search
-
 
 **Response**
 
@@ -252,18 +245,15 @@ The advanced search options are certain to change in the future.
 }
 ```
 
-
-## Comments 
+## Comments
 
 Fetch comments from torrent pages.
-
 
 **Request**
 
 `ajax.php?action=tcomments`
 
 `&id=` — torrent's id (required)
-
 
 **Response**
 
@@ -299,7 +289,6 @@ Fetch comments from torrent pages.
 }
 ```
 
-
 # Torrent features
 
 Various features around the torrents themselves.
@@ -311,7 +300,6 @@ Various features around the torrents themselves.
 `ajax.php?action=collage`
 
 `&id=` — collage's id (required)
-
 
 **Response**
 
@@ -373,13 +361,11 @@ Various features around the torrents themselves.
 }
 ```
 
-
-## Artist 
+## Artist
 
 Under construction as of 2020-11-24.
 Currently not returning the artist's torrent groups.
 Please see the response below for details.
-
 
 **Request**
 
@@ -391,34 +377,32 @@ Please see the response below for details.
 
 `&artistreleases=` — if set, only include groups where the artist is the main artist
 
-
 **Response**
 
 ```json
 {
-    "status": "success",
-    "response": {
-        "id": 94,
-        "name": "Jackie Treehorn",
-        "notificationsEnabled": false,
-        "hasBookmarked": false,
-        "image": "",
-        "body": "",
-        "vanityHouse": false,
-        "tags": [],
-        "statistics": {
-            "numGroups": 0,
-            "numTorrents": 0,
-            "numSeeders": 0,
-            "numLeechers": 0,
-            "numSnatches": 0
-        },
-        "torrentgroup": [],
-        "requests": []
-    }
+  "status": "success",
+  "response": {
+    "id": 94,
+    "name": "Jackie Treehorn",
+    "notificationsEnabled": false,
+    "hasBookmarked": false,
+    "image": "",
+    "body": "",
+    "vanityHouse": false,
+    "tags": [],
+    "statistics": {
+      "numGroups": 0,
+      "numTorrents": 0,
+      "numSeeders": 0,
+      "numLeechers": 0,
+      "numSnatches": 0
+    },
+    "torrentgroup": [],
+    "requests": []
+  }
 }
 ```
-
 
 ## Request
 
@@ -430,69 +414,66 @@ Please see the response below for details.
 
 `&page=` — page of the comments to display (default: last page)
 
-
 **Response**
 
 ```json
 {
-    "status": "success",
-    "response": {
-        "requestId": 2,
-        "requestorId": 2,
-        "requestorName": "me",
-        "isBookmarked": false,
-        "requestTax": 0.1,
-        "timeAdded": "2020-04-23 02:02:37",
-        "canEdit": true,
-        "canVote": true,
-        "minimumVote": 20971520,
-        "voteCount": 1,
-        "lastVote": "2020-11-15 06:51:56",
-        "topContributors": [
-            {
-                "userId": 2,
-                "userName": "me",
-                "bounty": 15461882266
-            }
-        ],
-        "totalBounty": 15461882266,
-        "categoryId": 10,
-        "categoryName": "Models",
-        "title": "Markov State Model Database of Protein Folding Datasets",
-        "year": 0,
-        "image": "",
-        "bbDescription": "BBcode",
-        "description": "HTML",
-        "artists": [
-            {
-                "id": 88,
-                "name": "Thomas Lane"
-            }
-        ],
-        "isFilled": false,
-        "fillerId": 0,
-        "fillerName": "",
-        "torrentId": 0,
-        "timeFilled": "",
-        "tags": [
-            "coding",
-            "proteomics",
-            "biochemistry",
-            "data.science",
-            "gene.expression"
-        ],
-        "comments": [],
-        "commentPage": 1,
-        "commentPages": 0
-    }
+  "status": "success",
+  "response": {
+    "requestId": 2,
+    "requestorId": 2,
+    "requestorName": "me",
+    "isBookmarked": false,
+    "requestTax": 0.1,
+    "timeAdded": "2020-04-23 02:02:37",
+    "canEdit": true,
+    "canVote": true,
+    "minimumVote": 20971520,
+    "voteCount": 1,
+    "lastVote": "2020-11-15 06:51:56",
+    "topContributors": [
+      {
+        "userId": 2,
+        "userName": "me",
+        "bounty": 15461882266
+      }
+    ],
+    "totalBounty": 15461882266,
+    "categoryId": 10,
+    "categoryName": "Models",
+    "title": "Markov State Model Database of Protein Folding Datasets",
+    "year": 0,
+    "image": "",
+    "bbDescription": "BBcode",
+    "description": "HTML",
+    "artists": [
+      {
+        "id": 88,
+        "name": "Thomas Lane"
+      }
+    ],
+    "isFilled": false,
+    "fillerId": 0,
+    "fillerName": "",
+    "torrentId": 0,
+    "timeFilled": "",
+    "tags": [
+      "coding",
+      "proteomics",
+      "biochemistry",
+      "data.science",
+      "gene.expression"
+    ],
+    "comments": [],
+    "commentPage": 1,
+    "commentPages": 0
+  }
 }
 ```
-
 
 ## Request search
 
 If no arguments are specified then the most recent requests are shown.
-
 
 **Request**
 
@@ -509,7 +490,6 @@ If no arguments are specified then the most recent requests are shown.
 `&tags_type=` — `0` for any, `1` for match all
 
 `filter_cat[]`, `releases[]`, `bitrates[]`, `formats[]`, `media[]` — as used on requests.php
-
 
 **Response**
 
@@ -557,11 +537,9 @@ If no arguments are specified then the most recent requests are shown.
 }
 ```
 
-
 ## Top 10
 
 Fetch the Top 10 torrents, tags, or users.
-
 
 ### Torrents
 
@@ -572,7 +550,6 @@ Fetch the Top 10 torrents, tags, or users.
 `&limit=` — one of 10, 100, 250 (default: `10`)
 
 `&type=` — one of: torrents, tags, users (default: `torrents`)
-
 
 **Response**
 
@@ -709,7 +686,6 @@ Fetch the Top 10 torrents, tags, or users.
 }
 ```
 
-
 ### Tags
 
 ```json
@@ -759,7 +735,6 @@ Fetch the Top 10 torrents, tags, or users.
     ]
 }
 ```
-
 
 ### Users
 

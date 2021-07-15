@@ -2,13 +2,11 @@
 
 Endpoints related to the forums.
 
-
 ## Category view
 
 **Request**
 
 `ajax.php?action=forum`
-
 
 **Response**
 
@@ -64,7 +62,6 @@ Endpoints related to the forums.
 }
 ```
 
-
 ## Forum view
 
 **Request**
@@ -74,7 +71,6 @@ Endpoints related to the forums.
 `&forumid=` — id of the forum to display (required)
 
 `&page=` — the page to display (default: `1`)
-
 
 **Response**
 
@@ -114,8 +110,7 @@ Endpoints related to the forums.
 }
 ```
 
-
-## Thread view 
+## Thread view
 
 **Request**
 
@@ -128,7 +123,6 @@ Endpoints related to the forums.
 `&page=` — page to display (default: `1`)
 
 `&updatelastread=` — set to `1` to not update the last read id (default: `0`)
-
 
 **Response**
 
@@ -203,7 +197,6 @@ Endpoints related to the forums.
 }
 ```
 
-
 ## Subscriptions
 
 **Request**
@@ -211,7 +204,6 @@ Endpoints related to the forums.
 `ajax.php?action=subscriptions`
 
 `&showunread=` — `1` to show only unread, `0` for all subscriptions (default: `1`)
-
 
 **Response**
 
@@ -243,11 +235,9 @@ Endpoints related to the forums.
 }
 ```
 
-
 ## Raw BBcode
 
 Fetch a post's unrendered content.
-
 
 **Request**
 
@@ -255,14 +245,13 @@ Fetch a post's unrendered content.
 
 `&postid=` — post id to display (required)
 
-
 **Response**
 
 ```json
 {
-    "status": "success",
-    "response": {
-        "body": "[img]https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348970636l/12420783.jpg[/img]<br />\r\n<br />\r\nThe human species&#39; enjoyment of food is universal, though different cultures prefer wildly different flavors. Shepherd establishes a new companion field to molecular gastronomy called neurogastronomy. His book explains how the brain constructs and interprets multidimensional flavor profiles as the volatile compounds of food pass through the sense of retronasal smell. The science is accessible and still does justice to the complexity of the olfactory&ndash;neurological interactions described. This book will change the way you eat.<br />\r\n<br />\r\n[url=https://libgen.is/book/index.php?md5=6E9CE452E815418B1F134D5718751000]Library Genesis[/url] / [url=https://www.worldcat.org/title/neurogastronomy-how-the-brain-creates-flavor-and-why-it-matters/oclc/967255519&amp;referer=brief_results]WorldCat[/url]"
-    }
+  "status": "success",
+  "response": {
+    "body": "[img]https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1348970636l/12420783.jpg[/img]<br />\r\n<br />\r\nThe human species&#39; enjoyment of food is universal, though different cultures prefer wildly different flavors. Shepherd establishes a new companion field to molecular gastronomy called neurogastronomy. His book explains how the brain constructs and interprets multidimensional flavor profiles as the volatile compounds of food pass through the sense of retronasal smell. The science is accessible and still does justice to the complexity of the olfactory&ndash;neurological interactions described. This book will change the way you eat.<br />\r\n<br />\r\n[url=https://libgen.is/book/index.php?md5=6E9CE452E815418B1F134D5718751000]Library Genesis[/url] / [url=https://www.worldcat.org/title/neurogastronomy-how-the-brain-creates-flavor-and-why-it-matters/oclc/967255519&amp;referer=brief_results]WorldCat[/url]"
+  }
 }
 ```

@@ -1,1 +1,13 @@
-site_name: 'API ⸬ BioTorrents.de'
+site_name: 'Docs ⸬ BioTorrents.de'
+site_url: 'https://docs.biotorrents.de'
+
+repo_name: 'Gazelle'
+repo_url: 'https://github.com/biotorrents/gazelle'
+
+nav:
+  - 'index.md'
+  - 'torrents.md'
+  - 'users.md'
+  - 'forums.md'
+  - 'meta.md'
+  - 'install.md'

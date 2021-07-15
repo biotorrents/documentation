@@ -1,7 +1,6 @@
 The JSON API provides an easily parseable interface to [BioTorrents.de](https://biotorrents.de).
 Please use the navigation menu to find lists of endpoints, their arguments, and example responses.
 
-
 # Introduction
 
 All request URLs are in the form
@@ -26,7 +25,6 @@ All the JSON returned is in the form
 If the request is invalid, or a problem occurs, the `status` will be `failure`.
 In this case the value of `response` is `undefined`.
 
-
 ## Bearer token auth
 
 First, generate a token in your profile security settings and keep it safe.
@@ -39,13 +37,11 @@ curl biotorrents.de/ajax.php?action=index \
   -H "Authorization: Bearer {token}"
 ```
 
-
 ## Cookie auth
 
 Please send a POST request to `https://biotorrents.de/login.php` with `username` and `password`,
 or acquire a cookie from a browser session using the developer tools.
 Then store the cookie and use it to access the rest of the API.
-
 
 # Libraries
 
@@ -56,22 +52,19 @@ Questions about the API can be answered in `#development` on
 
 Please get it touch if you'd like me to list your project below.
 
-
-| Language	| GitHub |
-| :--		| :-- |
-| C#		| [frankston/WhatAPI](https://github.com/frankston/WhatAPI) |
-| Go		| [kdvh/whatapi](https://github.com/kdvh/whatapi) |
-| JavaScript	| [deoxxa/whatcd](https://github.com/deoxxa/whatcd) |
-| Java		| [Gwindow/WhatAPI](https://github.com/Gwindow/WhatAPI) |
-| PHP		| [Jleagle/gazelle-api-client](https://github.com/Jleagle/gazelle-api-client) |
-| Python	| [isaaczafuta/whatapi](https://github.com/isaaczafuta/whatapi) |
-| Ruby		| [chasemgray/RubyGazelle](https://github.com/chasemgray/RubyGazelle) |
-
+| Language   | GitHub                                                                      |
+| :--------- | :-------------------------------------------------------------------------- |
+| C#         | [frankston/WhatAPI](https://github.com/frankston/WhatAPI)                   |
+| Go         | [kdvh/whatapi](https://github.com/kdvh/whatapi)                             |
+| JavaScript | [deoxxa/whatcd](https://github.com/deoxxa/whatcd)                           |
+| Java       | [Gwindow/WhatAPI](https://github.com/Gwindow/WhatAPI)                       |
+| PHP        | [Jleagle/gazelle-api-client](https://github.com/Jleagle/gazelle-api-client) |
+| Python     | [isaaczafuta/whatapi](https://github.com/isaaczafuta/whatapi)               |
+| Ruby       | [chasemgray/RubyGazelle](https://github.com/chasemgray/RubyGazelle)         |
 
 # Caveats
 
 **Abusing or using this API for malicious purposes is a bannable offense and will not be taken lightly.**
-
 
 ## Rate limit
 
@@ -79,7 +72,6 @@ The API is rate-limited to one request every 6 seconds.
 This limit doesn't apply to users in the Donor class.
 [Please consider donating](https://www.patreon.com/biotorrents)
 to support this scientific resource's development.
-
 
 ## Under construction
 
@@ -95,7 +87,6 @@ also contains other undocumented endpoints:
 - `news_ajax`
 - `send_recommendation`
 
-
 # Not implemented
 
 ## Similar artists
@@ -108,31 +99,25 @@ also contains other undocumented endpoints:
 
 `&limit=` — maximum number of results to return (fewer might be returned)
 
-
 **Response**
 
 ```json
 
 ```
-
 
 ## Better
 
 Fetch better.php (suggested torrent improvements).
 
-
 **Request**
 
 `ajax.php?action=better`
-
 
 **Response**
 
 ```json
 
 ```
-
-
 
 ## Torrent info
 
@@ -140,13 +125,11 @@ Fetch better.php (suggested torrent improvements).
 
 `ajax.php?action=torrent_info`
 
-
 **Response**
 
 ```json
 
 ```
-
 
 ## Check private
 
@@ -154,20 +137,17 @@ Fetch better.php (suggested torrent improvements).
 
 `ajax.php?action=checkprivate`
 
-
 **Response**
 
 ```json
 
 ```
 
-
 ## Vote favorite
 
 **Request**
 
 `ajax.php?action=votefavorite`
-
 
 **Response**
 

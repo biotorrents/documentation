@@ -2,11 +2,9 @@
 
 Endpoints related to user accounts.
 
-
 ## User
 
 If you're viewing your own account, `personal->passkey` will be shown.
-
 
 **Request**
 
@@ -14,70 +12,68 @@ If you're viewing your own account, `personal->passkey` will be shown.
 
 `&id=` — id of the user to display (required)
 
-
 **Response**
 
 ```json
 {
-    "status": "success",
-    "response": {
-        "username": "eva",
-        "avatar": "https://ptpimg.me/1x1h48.png",
-        "isFriend": false,
-        "profileText": "",
-        "stats": {
-            "joinedDate": "2020-03-08 14:27:59",
-            "lastAccess": "2020-11-24 15:25:17",
-            "uploaded": 2192870833,
-            "downloaded": 1244283888,
-            "ratio": 1.76235,
-            "requiredRatio": 0
-        },
-        "ranks": {
-            "uploaded": 0,
-            "downloaded": 2,
-            "uploads": 0,
-            "requests": 0,
-            "bounty": 0,
-            "posts": 2,
-            "artists": 0,
-            "overall": 0
-        },
-        "personal": {
-            "class": "Donor",
-            "paranoia": 0,
-            "paranoiaText": "Off",
-            "donor": false,
-            "warned": false,
-            "enabled": true,
-            "passkey": ""
-        },
-        "community": {
-            "posts": 4,
-            "torrentComments": 0,
-            "artistComments": 0,
-            "collageComments": 0,
-            "requestComments": 0,
-            "collagesStarted": 1,
-            "collagesContrib": 1,
-            "requestsFilled": 0,
-            "bountyEarned": 0,
-            "requestsVoted": 0,
-            "bountySpent": 0,
-            "uploaded": 0,
-            "groups": 0,
-            "seeding": 0,
-            "leeching": 0,
-            "snatched": 7,
-            "invited": 0,
-            "artistsAdded": 0
-        }
+  "status": "success",
+  "response": {
+    "username": "eva",
+    "avatar": "https://ptpimg.me/1x1h48.png",
+    "isFriend": false,
+    "profileText": "",
+    "stats": {
+      "joinedDate": "2020-03-08 14:27:59",
+      "lastAccess": "2020-11-24 15:25:17",
+      "uploaded": 2192870833,
+      "downloaded": 1244283888,
+      "ratio": 1.76235,
+      "requiredRatio": 0
+    },
+    "ranks": {
+      "uploaded": 0,
+      "downloaded": 2,
+      "uploads": 0,
+      "requests": 0,
+      "bounty": 0,
+      "posts": 2,
+      "artists": 0,
+      "overall": 0
+    },
+    "personal": {
+      "class": "Donor",
+      "paranoia": 0,
+      "paranoiaText": "Off",
+      "donor": false,
+      "warned": false,
+      "enabled": true,
+      "passkey": ""
+    },
+    "community": {
+      "posts": 4,
+      "torrentComments": 0,
+      "artistComments": 0,
+      "collageComments": 0,
+      "requestComments": 0,
+      "collagesStarted": 1,
+      "collagesContrib": 1,
+      "requestsFilled": 0,
+      "bountyEarned": 0,
+      "requestsVoted": 0,
+      "bountySpent": 0,
+      "uploaded": 0,
+      "groups": 0,
+      "seeding": 0,
+      "leeching": 0,
+      "snatched": 7,
+      "invited": 0,
+      "artistsAdded": 0
     }
+  }
 }
 ```
 
-
-## User search 
+## User search
 
 **Request**
 
@@ -86,7 +82,6 @@ If you're viewing your own account, `personal->passkey` will be shown.
 `&search=` — the search term (required)
 
 `&page=` — page to display (default: `1`)
-
 
 **Response**
 
@@ -122,8 +117,7 @@ If you're viewing your own account, `personal->passkey` will be shown.
 }
 ```
 
-
-## Community stats 
+## Community stats
 
 **Request**
 
@@ -131,30 +125,27 @@ If you're viewing your own account, `personal->passkey` will be shown.
 
 `&userid=` — id of the user to display (required)
 
-
 **Response**
 
 ```json
 {
-    "status": "success",
-    "response": {
-        "leeching": 0,
-        "seeding": "60",
-        "snatched": "3",
-        "usnatched": false,
-        "downloaded": false,
-        "udownloaded": false,
-        "seedingperc": 100
-    }
+  "status": "success",
+  "response": {
+    "leeching": 0,
+    "seeding": "60",
+    "snatched": "3",
+    "usnatched": false,
+    "downloaded": false,
+    "udownloaded": false,
+    "seedingperc": 100
+  }
 }
 ```
-
 
 ## Recents (torrents)
 
 This endpoint circumvents the "upload anonymously" feature.
 Various features of the response will likely change in the future.
-
 
 **Request**
 
@@ -163,7 +154,6 @@ Various features of the response will likely change in the future.
 `&userid=` — id of user (required)
 
 `&limit=` — how many recent torrents to fetch
-
 
 **Response**
 
@@ -220,7 +210,6 @@ Various features of the response will likely change in the future.
 }
 ```
 
-
 ## History (community)
 
 **Request**
@@ -228,7 +217,6 @@ Various features of the response will likely change in the future.
 `ajax.php?action=userhistory&type=posts`
 
 `&userid=` — id of user (required)
-
 
 **Response**
 
@@ -270,16 +258,13 @@ Various features of the response will likely change in the future.
 }
 ```
 
-
 # Your account
 
 Endpoints that only fetch info about your own account.
 
-
 ## Inbox
 
 The current example isn't from the [BioTorrents.de](https://biotorrents.de) database.
-
 
 **Request**
 
@@ -294,7 +279,6 @@ The current example isn't from the [BioTorrents.de](https://biotorrents.de) data
 `&sort=` — if set to `unread` then unread messages come first
 
 `&type=` — one of: inbox or sentbox (default: `inbox`)
-
 
 **Response**
 
@@ -325,18 +309,15 @@ The current example isn't from the [BioTorrents.de](https://biotorrents.de) data
 }
 ```
 
-
-## Conversation 
+## Conversation
 
 The current example isn't from the [BioTorrents.de](https://biotorrents.de) database.
-
 
 **Request**
 
 `ajax.php?action=inbox&type=viewconv`
 
 `&id=` — id of the message to display (required)
-
 
 **Response**
 
@@ -366,7 +347,6 @@ The current example isn't from the [BioTorrents.de](https://biotorrents.de) data
 
 Fetch bookmarked torrents or artists.
 
-
 ### Torrents
 
 **Request**
@@ -374,7 +354,6 @@ Fetch bookmarked torrents or artists.
 `ajax.php?action=bookmarks`
 
 `&type=` — one of torrents, artists (default: `torrents`)
-
 
 **Response**
 
@@ -439,11 +418,9 @@ Fetch bookmarked torrents or artists.
 }
 ```
 
-
 ## Notifications
 
 Fetch new upload filter notifications.
-
 
 **Request**
 
@@ -451,20 +428,17 @@ Fetch new upload filter notifications.
 
 `&page=` — page number to display (default: `1`)
 
-
 **Response**
 
 ```json
 
 ```
 
-
 ### Get user notifications
 
 **Request**
 
 `ajax.php?action=get_user_notifications`
-
 
 **Response**
 
@@ -483,7 +457,6 @@ Fetch new upload filter notifications.
 }
 ```
 
-
 ### Clear user notification
 
 **Request**
@@ -501,7 +474,6 @@ Fetch new upload filter notifications.
 - Subscriptions
 - Collages
 - Global
-
 
 **Response**
 

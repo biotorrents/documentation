@@ -1,11 +1,9 @@
 # Install
 
 Thanks for your interest in BioTorrents.de's development!
-Gazelle is notoriously difficult to install and good docs are lacking.
-This page, based on the
+Gazelle is notoriously difficult to install.
 [original announcement protocol](https://github.com/biotorrents/announcement),
-is an attempt to make an evergreen install guide.
-It's fast paced and only covers the essentials.
+is an attempt at an evergreen install guide.
 
 # Debian system profile
 
@@ -60,9 +58,7 @@ Then upgrade the system:
 # reboot
 ```
 
-Further server setup,
-including TLD considerations, DNS, email, etc.,
-are beyond this guide's scope.
+Further server setup, including DNS, email, etc., are beyond this guide's scope.
 For more info about SSH, Unbound, NSD, OpenSMTPd, Dovecot, Unix users, etc.,
 [please see the original launch announcement](https://github.com/biotorrents/announcement).
 
@@ -71,8 +67,8 @@ For more info about SSH, Unbound, NSD, OpenSMTPd, Dovecot, Unix users, etc.,
 Install Nginx and Certbot with `apt install nginx certbot python3-certbot-nginx`.
 
 The basic Gazelle Nginx config should look similar to this.
-Note that you'll likely have to change the file paths based on your setup.
-Also, PHP-FPM may need larger-than-default buffers to serve without 502 errors:
+You'll likely have to change the file paths based on your setup.
+Also, PHP-FPM may need larger buffers to serve without 502 errors:
 
 ```nginx
 server {
@@ -127,9 +123,8 @@ server {
 ```
 
 The Nginx config for the Ocelot tracker should look like this.
-Nginx acts as a TLS reverse proxy so that Ocelot isn't directly exposed.
-Note the additional caveats of Ocelot's listening port (34000 is default),
-and setting the correct `Host` header (so tracker connections don't show up as localhost):
+Nginx acts as a TLS reverse proxy so Ocelot isn't directly exposed.
+Note the `Host` header (so tracker connections don't show up as localhost):
 
 ```nginx
 server {
@@ -163,17 +158,16 @@ Add this entry to the root crontab to renew the certs daily:
 
 Please see the
 [Certbot docs](https://certbot.eff.org/docs/using.html)
-for more info.
-Also see the
+and
 [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)
-for info on proper Nginx security.
+for more info.
 
 ## MariaDB
 
 Install MariaDB with `apt install mariadb-server`
 and initialize it with `mysql_secure_installation`.
 
-Note that BioTorrents.de uses TLS connections to a dedicated database server.
+BioTorrents.de uses TLS connections to a dedicated database server.
 Unix sockets are preferred for the database running on localhost.
 The config should look similar to this, paying attention to `sql-mode`:
 
@@ -210,7 +204,7 @@ If you'd like to use TLS crypto in your database connections,
 They contain the necessary info to generate self-signed certs.
 
 Finally, load the Gazelle database schema in an SQL shell.
-I prefer to generate secure passphrases with `pwgen -s | encrypt`.
+I generate secure passphrases with `pwgen -s | encrypt`:
 
 ```mysql
 CREATE DATABASE gazelle_development;
@@ -227,14 +221,14 @@ The basic PHP package:
 `apt install php php-dev php-fpm`.
 
 The PHP extensions.
-Note that there are two PHP memcached extensions.
+There are two PHP memcached extensions.
 The correct one is just `php-memcache` without the "d."
 Your distro may require other extensions:
 `php-apcu php-mbstring php-memcache php-mysql`.
 
 BioTorrents.de also supports the
 [Seqhash algorithm](https://blog.libredna.org/post/seqhash/)
-and requires Blake3 hash support for this feature.
+and requires Blake3 for this feature.
 Optionally, please install
 [php-blake3](https://github.com/cypherbits/php-blake3).
 
@@ -248,9 +242,9 @@ I strongly recommend crafting a
 Install memcached with `apt install memcached`.
 
 BioTorrents.de supports separate production and development instances.
-If you with to run two instances, it's necessary to run two memcached sockets.
-Otherwise the sites will experience significant data cross-contamination.
-The required `/etc/memcached.conf` content:
+If you with to run two instances, it's necessary to run memcached twice.
+Otherwise the sites will experience significant cross-contamination.
+The `/etc/memcached.conf` content:
 
 ```
 -d
@@ -265,7 +259,7 @@ The required `/etc/memcached.conf` content:
 A helper script to quickly bring up a second memcached as root:
 
 ```shell
-#!/bin/bash
+#!/bin/sh
 memcached -d -m 5120 -s /var/run/memcached/memcached-dev.sock -a 0777 -t16 -C -u memcache
 ```
 
@@ -294,8 +288,8 @@ Please see
 # Application setup
 
 This section should use a separate Unix user for each component.
-Gazelle, Ocelot, IRC, and sitebot should each have a distinct home folder and full shell.
-The applications would otherwise be an insecure jumble and hard to maintain.
+Gazelle, Ocelot, IRC, and sitebot should each have their own home folder and shell.
+Otherwise the applications would be an insecure jumble and hard to maintain.
 
 ## Gazelle
 
@@ -314,13 +308,12 @@ home folder, subfolder of `/var/www`, etc.
 
 ```shell
 # nginx(8) log location
-mkdir -m 700 -p /var/www/log/{development,production}
-touch /var/www/log/production/{peerupdate.log,schedule.log}
-touch /var/www/log/development/{peerupdate.log,schedule.log}
+mkdir -m 700 -p /var/www/log/{production,development}
+touch /var/www/log/{production,development/{peerupdate.log,schedule.log}
 chown -R biotorrents:biotorrents /var/www/log
 
 # files outside the web root
-mkdir -m 700 -p /var/www/pictures /var/www/torrents
+mkdir -m 700 -p /var/www/pictures /var/www/torrents /var/www/torrents-dev
 chown -R www-data:www-data /var/www/pictures /var/www/torrents /var/www/torrents-dev
 ```
 
@@ -341,11 +334,11 @@ find . -type f -print0 | xargs -0 chmod 0644
 find . -type d -print0 | xargs -0 chmod 0755
 ```
 
-### Gazelle app config
+### Application config
 
 [`classes/config.php`](https://github.com/biotorrents/gazelle/blob/development/classes/config.template.php)
 warrants its own section.
-When setting up Gazelle for the first time, these options must be enabled.
+When setting up Gazelle for the first time, set these options:
 
 - `'DEBUG_MODE' = false`
 - `'OPEN_REGISTRATION' = true`
@@ -356,7 +349,7 @@ BioTorrents.de uses a singleton class with extended recursive ArrayObject suppor
 [`$ENV = ENV::go()`](https://github.com/biotorrents/gazelle/blob/development/classes/env.class.php).
 
 There are some other values to set up.
-Please pay attention to these values that Gazelle needs for proper function:
+Please pay attention to these values for proper functionality:
 
 - `SITE_DOMAIN` and `IMAGE_DOMAIN`
 - `WEB_ROOT` and `SERVER_ROOT`
@@ -380,7 +373,7 @@ mv composer.phar /var/www/bin/composer
 ```
 
 Then add `/var/www/bin` to the Gazelle user's `$PATH` and run:
-`php composer.phar update`.
+`composer update`.
 
 ### SCSS and fonts
 
@@ -394,7 +387,7 @@ Then install SassC with `apt install sassc`.
 This should be a for loop, to compile the CSS:
 
 ```shell
-#!/bin/bash
+#!/bin/sh
 styles="/var/www/html/dev.biotorrents.de/static/styles"
 sassc "$styles/beluga/beluga.scss" > "$styles/beluga.css"
 sassc "$styles/bookish/bookish.scss" > "$styles/bookish.css"
@@ -415,8 +408,8 @@ and developing TLS support.
 The patched version is available at
 [biotorrents/ocelot](/biotorrents/ocelot).
 
-Then installed the dependencies like below.
-Note that specific dependencies may differ on your system.
+First installed the dependencies like below.
+The specific dependencies may differ on your system.
 
 ```shell
 apt install \
@@ -446,9 +439,9 @@ make
 make install
 ```
 
-Copy `ocelot/ocelot.conf.dist`.
+Copy and edit `ocelot/ocelot.conf.dist` to the Ocelot user's home folder.
 The daemon runs on `localhost:34000` and Nginx TLS reverse proxies it to `localhost:443`.
-`ocelot.conf` lives in the Ocelot user's home folder and the daemon runs in a tmux window there.
+The Ocelot daemon runs in a tmux window under as a user process.
 
 ## IRC and kana (sitebot)
 
@@ -459,12 +452,12 @@ Docs pending the completion of sitebot API integration.
 At this point it should be possible to register for the site.
 The first account is the sysop so please act quickly here.
 Disable `DEBUG_MODE` and `FEATURE_SET_ENC_KEY_PUBLIC` as soon as you register!
-Do `apt install qrencode` for 2FA support and enable it with a GPG key on the sysop account.
+Then do `apt install qrencode` for 2FA support and enable it with a GPG key on the sysop account.
 
 Configure a client whitelist on the Toolbox page by the
 [BitTorrent spec's peer ID list](https://wiki.theory.org/index.php/BitTorrentSpecification#peer_id).
 Please find a list of quality client peer IDs below.
-Note that LibTorrent 0.1x.y also covers rTorrent/ruTorrent and other clients that use
+LibTorrent 0.1x.y also covers rTorrent/ruTorrent and other clients that use
 [rakshasa's library](https://github.com/rakshasa/libtorrent):
 
 | Client Name       | Peer ID |
@@ -481,7 +474,6 @@ Note that LibTorrent 0.1x.y also covers rTorrent/ruTorrent and other clients tha
 | Transmission 2.xy | `-TR2`  |
 | Transmission 3.xy | `-TR3`  |
 
-Most of the Toolbox pages don't write to the database and all of them should work.
 For more BitTorrent info see
 [Calomel's rTorrent hacking guide](https://calomel.org/rtorrent_mods.html).
 

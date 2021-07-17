@@ -1,9 +1,10 @@
 # Install
 
 Thanks for your interest in BioTorrents.de's development!
-Gazelle is notoriously difficult to install.
+This guide, based on the
 [original announcement protocol](https://github.com/biotorrents/announcement),
 is an attempt at an evergreen install guide.
+It uses the format "one section per technology."
 
 # Debian system profile
 
@@ -406,7 +407,7 @@ BioTorrents.de uses What.CD's Ocelot with the
 [10th anniversary mixtape patches](https://twitter.com/whatcd/status/923942203080273921)
 and developing TLS support.
 The patched version is available at
-[biotorrents/ocelot](/biotorrents/ocelot).
+[biotorrents/ocelot](https://github.com/biotorrents/ocelot).
 
 First installed the dependencies like below.
 The specific dependencies may differ on your system.

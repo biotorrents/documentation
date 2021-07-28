@@ -6,7 +6,7 @@ Endpoints related to the forums.
 
 **Request**
 
-`ajax.php?action=forum`
+`api.php?action=forum`
 
 **Response**
 
@@ -66,7 +66,7 @@ Endpoints related to the forums.
 
 **Request**
 
-`ajax.php?action=forum&type=viewforum`
+`api.php?action=forum&type=viewforum`
 
 `&forumid=` — id of the forum to display (required)
 
@@ -114,7 +114,7 @@ Endpoints related to the forums.
 
 **Request**
 
-`ajax.php?action=forum&type=viewthread`
+`api.php?action=forum&type=viewthread`
 
 `&threadid=` — id of the thread to display (required)
 
@@ -201,7 +201,7 @@ Endpoints related to the forums.
 
 **Request**
 
-`ajax.php?action=subscriptions`
+`api.php?action=subscriptions`
 
 `&showunread=` — `1` to show only unread, `0` for all subscriptions (default: `1`)
 
@@ -241,7 +241,7 @@ Fetch a post's unrendered content.
 
 **Request**
 
-`ajax.php?action=raw_bbcode`
+`api.php?action=raw_bbcode`
 
 `&postid=` — post id to display (required)
 

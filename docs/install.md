@@ -69,7 +69,8 @@ Install Nginx and Certbot with `apt install nginx certbot python3-certbot-nginx`
 
 The basic Gazelle Nginx config should look similar to this.
 You'll likely have to change the file paths based on your setup.
-Also, PHP-FPM may need larger buffers to serve without 502 errors:
+Also, PHP-FPM may need larger buffers, as in this example, to serve without 502 errors.
+The `client_max_body_size` should match `php.ini` and accomodate large torrents:
 
 ```nginx
 server {
@@ -77,12 +78,10 @@ server {
         root /var/www/html/dev.biotorrents.de;
 
         client_max_body_size 4M;
-        server_name dev.biotorrents.de;
+        server_name dev.biotorrents.de dev.torrents.bio;
 
-        add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";
-
-        ssl_certificate /etc/letsencrypt/live/biotorrents.de-0001/fullchain.pem; # managed by Certbot
-        ssl_certificate_key /etc/letsencrypt/live/biotorrents.de-0001/privkey.pem; # managed by Certbot
+        ssl_certificate /etc/letsencrypt/live/torrents.bio/fullchain.pem; # managed by Certbot
+        ssl_certificate_key /etc/letsencrypt/live/torrents.bio/privkey.pem; # managed by Certbot
 
         access_log off;
         error_log  /var/log/nginx/dev.biotorrents.de-error.log;
@@ -130,12 +129,11 @@ Note the `Host` header (so tracker connections don't show up as localhost):
 ```nginx
 server {
         listen 443 ssl http2;
-        server_name tr0.biotorrents.de track.biotorrents.de;
+        server_name tr0.biotorrents.de track.biotorrents.de track.torrents.bio;
 
-        add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload";
 
-        ssl_certificate /etc/letsencrypt/live/biotorrents.de-0001/fullchain.pem; # managed by Certbot
-        ssl_certificate_key /etc/letsencrypt/live/biotorrents.de-0001/privkey.pem; # managed by Certbot
+        ssl_certificate /etc/letsencrypt/live/torrents.bio/fullchain.pem; # managed by Certbot
+        ssl_certificate_key /etc/letsencrypt/live/torrents.bio/privkey.pem; # managed by Certbot
 
         access_log off;
         error_log  /var/log/nginx/tr0.biotorrents.de-error.log;
@@ -333,6 +331,9 @@ A useful script for resetting file permissions:
 #!/bin/sh
 find . -type f -print0 | xargs -0 chmod 0644
 find . -type d -print0 | xargs -0 chmod 0755
+
+chmod 600 classes/config.php
+chown -R www-data:www-data *
 ```
 
 ### Application config
@@ -362,7 +363,7 @@ Please pay attention to these values for proper functionality:
 ### Composer
 
 Assuming that `php.ini` is correctly set up,
-you may need these modified setup instructions from the
+you may need these modified setup instructions that differ from the
 [official Composer docs](https://getcomposer.org/download/):
 
 ```shell
@@ -380,7 +381,7 @@ Then add `/var/www/bin` to the Gazelle user's `$PATH` and run:
 
 Install SassC with `apt install sassc`.
 
-[Download the font pack](https://docs.biotorrents.de/dl/fonts.tgz)
+[Download the font pack](https://torrents.bio/fonts.tgz)
 and extract it with:
 `tar zxvf fonts.tgz -C /var/www/html/dev.biotorrents.de/static/styles/assets/fonts`.
 
@@ -393,9 +394,7 @@ styles="/var/www/html/dev.biotorrents.de/static/styles"
 sassc "$styles/beluga/beluga.scss" > "$styles/beluga.css"
 sassc "$styles/bookish/bookish.scss" > "$styles/bookish.css"
 sassc "$styles/development/development.scss" > "$styles/development.css"
-sassc "$styles/genaviv/genaviv.scss" > "$styles/genaviv.css"
 sassc "$styles/global/global.scss" > "$styles/global.css"
-sassc "$styles/matcha/matcha.scss" > "$styles/matcha.css"
 sassc "$styles/oppai/oppai.scss" > "$styles/oppai.css"
 sassc "$styles/postmod/postmod.scss" > "$styles/postmod.css"
 sassc "$styles/public/public.scss" > "$styles/public.css"
@@ -410,7 +409,7 @@ The patched version is available at
 [biotorrents/ocelot](https://github.com/biotorrents/ocelot).
 
 First installed the dependencies like below.
-The specific dependencies may differ on your system.
+The specific dependencies may differ on your system:
 
 ```shell
 apt install \
@@ -447,6 +446,7 @@ The Ocelot daemon runs in a tmux window under as a user process.
 ## IRC and kana (sitebot)
 
 Docs pending the completion of sitebot API integration.
+This will be two shorter sections when finished.
 
 ## Inside the Gazelle Toolbox
 

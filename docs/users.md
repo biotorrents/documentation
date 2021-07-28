@@ -8,7 +8,7 @@ If you're viewing your own account, `personal->passkey` will be shown.
 
 **Request**
 
-`ajax.php?action=user`
+`api.php?action=user`
 
 `&id=` — id of the user to display (required)
 
@@ -77,7 +77,7 @@ If you're viewing your own account, `personal->passkey` will be shown.
 
 **Request**
 
-`ajax.php?action=usersearch`
+`api.php?action=usersearch`
 
 `&search=` — the search term (required)
 
@@ -121,7 +121,7 @@ If you're viewing your own account, `personal->passkey` will be shown.
 
 **Request**
 
-`ajax.php?action=community_stats`
+`api.php?action=community_stats`
 
 `&userid=` — id of the user to display (required)
 
@@ -149,7 +149,7 @@ Various features of the response will likely change in the future.
 
 **Request**
 
-`ajax.php?action=user_recents`
+`api.php?action=user_recents`
 
 `&userid=` — id of user (required)
 
@@ -214,7 +214,7 @@ Various features of the response will likely change in the future.
 
 **Request**
 
-`ajax.php?action=userhistory&type=posts`
+`api.php?action=userhistory&type=posts`
 
 `&userid=` — id of user (required)
 
@@ -268,7 +268,7 @@ The current example isn't from the [BioTorrents.de](https://biotorrents.de) data
 
 **Request**
 
-`ajax.php?action=inbox`
+`api.php?action=inbox`
 
 `&page=` — page number to display (default: `1`)
 
@@ -315,7 +315,7 @@ The current example isn't from the [BioTorrents.de](https://biotorrents.de) data
 
 **Request**
 
-`ajax.php?action=inbox&type=viewconv`
+`api.php?action=inbox&type=viewconv`
 
 `&id=` — id of the message to display (required)
 
@@ -351,7 +351,7 @@ Fetch bookmarked torrents or artists.
 
 **Request**
 
-`ajax.php?action=bookmarks`
+`api.php?action=bookmarks`
 
 `&type=` — one of torrents, artists (default: `torrents`)
 
@@ -424,7 +424,7 @@ Fetch new upload filter notifications.
 
 **Request**
 
-`ajax.php?action=notifications`
+`api.php?action=notifications`
 
 `&page=` — page number to display (default: `1`)
 
@@ -438,7 +438,7 @@ Fetch new upload filter notifications.
 
 **Request**
 
-`ajax.php?action=get_user_notifications`
+`api.php?action=get_user_notifications`
 
 **Response**
 
@@ -461,7 +461,7 @@ Fetch new upload filter notifications.
 
 **Request**
 
-`ajax.php?action=clear_user_notification`
+`api.php?action=clear_user_notification`
 
 `&type=` — one of the below NotificationsManager class constants:
 

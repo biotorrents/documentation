@@ -6,7 +6,7 @@ Endpoints related to torrents.
 
 **Request**
 
-`ajax.php?action=torrent`
+`api.php?action=torrent`
 
 `&id=` — torrent's id (required)
 
@@ -80,7 +80,7 @@ Endpoints related to torrents.
 
 **Request**
 
-`ajax.php?action=torrentgroup`
+`api.php?action=torrentgroup`
 
 `&id=` — torrent's group id (required)
 
@@ -164,7 +164,7 @@ The advanced search options are certain to change in the future.
 
 **Request**
 
-`ajax.php?action=browse`
+`api.php?action=browse`
 
 `&searchstr=` — string to search for
 
@@ -251,7 +251,7 @@ Fetch comments from torrent pages.
 
 **Request**
 
-`ajax.php?action=tcomments`
+`api.php?action=tcomments`
 
 `&id=` — torrent's id (required)
 
@@ -297,7 +297,7 @@ Various features around the torrents themselves.
 
 **Request**
 
-`ajax.php?action=collage`
+`api.php?action=collage`
 
 `&id=` — collage's id (required)
 
@@ -369,7 +369,7 @@ Please see the response below for details.
 
 **Request**
 
-`ajax.php?action=artist`
+`api.php?action=artist`
 
 `&id=` — artist's id (required)
 
@@ -408,7 +408,7 @@ Please see the response below for details.
 
 **Request**
 
-`ajax.php?action=request`
+`api.php?action=request`
 
 `&id=` — request id (required)
 
@@ -477,7 +477,7 @@ If no arguments are specified then the most recent requests are shown.
 
 **Request**
 
-`ajax.php?action=requests`
+`api.php?action=requests`
 
 `&page=` — page to display (default: `1`)
 
@@ -545,7 +545,7 @@ Fetch the Top 10 torrents, tags, or users.
 
 **Request**
 
-`ajax.php?action=top10`
+`api.php?action=top10`
 
 `&limit=` — one of 10, 100, 250 (default: `10`)
 

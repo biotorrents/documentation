@@ -5,7 +5,7 @@ Please use the navigation menu to find lists of endpoints, their arguments, and 
 
 All request URLs are in the form
 
-`ajax.php?action=<action>`
+`api.php?action=<action>`
 
 All the JSON returned is in the form
 
@@ -32,7 +32,7 @@ It's functionally a password, and like a password, it can't be recovered later.
 Then POST an RFC 6750–compliant bearer token along with each GET request:
 
 ```sh
-curl biotorrents.de/ajax.php?action=index \
+curl biotorrents.de/api.php?action=index \
   -H "Accept: application/json" \
   -H "Authorization: Bearer {token}"
 ```
@@ -93,7 +93,7 @@ also contains other undocumented endpoints:
 
 **Request**
 
-`ajax.php?action=similar_artists`
+`api.php?action=similar_artists`
 
 `&id=` — id of artist (required)
 
@@ -111,7 +111,7 @@ Fetch better.php (suggested torrent improvements).
 
 **Request**
 
-`ajax.php?action=better`
+`api.php?action=better`
 
 **Response**
 
@@ -123,7 +123,7 @@ Fetch better.php (suggested torrent improvements).
 
 **Request**
 
-`ajax.php?action=torrent_info`
+`api.php?action=torrent_info`
 
 **Response**
 
@@ -135,7 +135,7 @@ Fetch better.php (suggested torrent improvements).
 
 **Request**
 
-`ajax.php?action=checkprivate`
+`api.php?action=checkprivate`
 
 **Response**
 
@@ -147,7 +147,7 @@ Fetch better.php (suggested torrent improvements).
 
 **Request**
 
-`ajax.php?action=votefavorite`
+`api.php?action=votefavorite`
 
 **Response**
 

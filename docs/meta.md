@@ -9,7 +9,7 @@ e.g., your ratio and any unread notices.
 
 **Request**
 
-`ajax.php?action=index`
+`api.php?action=index`
 
 **Response**
 
@@ -45,7 +45,7 @@ Fetch the homepage sidebar info.
 
 **Request**
 
-`ajax.php?action=stats`
+`api.php?action=stats`
 
 **Response**
 
@@ -75,7 +75,7 @@ Fetch an app manifest.
 
 **Request**
 
-`ajax.php?action=manifest`
+`api.php?action=manifest`
 
 **Response**
 
@@ -107,7 +107,7 @@ Requires moderator permissions to access without error.
 
 **Request**
 
-`ajax.php?action=loadavg`
+`api.php?action=loadavg`
 
 **Response**
 
@@ -130,7 +130,7 @@ Fetch the recent news and blogs.
 
 **Request**
 
-`ajax.php?action=announcements`
+`api.php?action=announcements`
 
 **Response**
 
@@ -181,7 +181,7 @@ Either `id` or `name` is required.
 
 **Request**
 
-`ajax.php?action=wiki`
+`api.php?action=wiki`
 
 `&id=` — page id to display (required)
 
@@ -211,7 +211,7 @@ Fetch a site metadata blueprint.
 
 **Request**
 
-`ajax.php?action=ontology`
+`api.php?action=ontology`
 
 **Response**
 

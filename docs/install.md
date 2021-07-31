@@ -203,7 +203,8 @@ If you'd like to use TLS crypto in your database connections,
 They contain the necessary info to generate self-signed certs.
 
 Finally, load the Gazelle database schema in an SQL shell.
-I generate secure passphrases with `pwgen -s | encrypt`:
+I generate secure passphrases with `pwgen -s | encrypt`.
+Note that Ocelot also needs `BINLOG_ADMIN` global privileges:
 
 ```mysql
 CREATE DATABASE gazelle_development;
@@ -211,6 +212,7 @@ USE gazelle_development;
 SOURCE /var/www/html/dev.biotorrents.de/gazelle.sql;
 CREATE USER 'gazelle_development'@'localhost' IDENTIFIED BY '';
 GRANT ALL PRIVILEGES ON `gazelle_development`.* TO 'gazelle_development'@'localhost';
+GRANT BINLOG ADMIN ON *.* TO 'gazelle_development'@'localhost';
 ```
 
 ## PHP
@@ -362,6 +364,15 @@ Please pay attention to these values for proper functionality:
 
 ### Composer
 
+If you'd like to disable BioPHP support and remove the php-blake3 dependency,
+please set `FEATURE_BIOPHP` to false and remove this line from `composer.json`:
+
+```json
+"require": {
+  "biotorrents/biophp": "dev-master"
+}
+```
+
 Assuming that `php.ini` is correctly set up,
 you may need these modified setup instructions that differ from the
 [official Composer docs](https://getcomposer.org/download/):
@@ -443,10 +454,56 @@ Copy and edit `ocelot/ocelot.conf.dist` to the Ocelot user's home folder.
 The daemon runs on `localhost:34000` and Nginx TLS reverse proxies it to `localhost:443`.
 The Ocelot daemon runs in a tmux window under as a user process.
 
-## IRC and kana (sitebot)
+## IRC and sitebot
 
-Docs pending the completion of sitebot API integration.
-This will be two shorter sections when finished.
+Gazelle is agnostic to the IRCd because it only sends raw commands.
+This can be disabled by setting `FEATURE_IRC` to false.
+However, the sitebot and daemon are usually paired.
+
+### ngIRCd
+
+I prefer to keep IRC locked down and well distanced,
+given its insecurity and use as a botnet C&C platform.
+Building the daemon as a user and using separate TLS certs.
+
+First download the
+[latest release](https://github.com/ngircd/ngircd/releases/latest),
+then see the
+[official docs](https://ngircd.barton.de/documentation.php.en)
+with the caveat to `configure` to a user target:
+
+```shell
+tar xzf ngircd-<version>.tar.gz
+cd ngircd-<version>
+./configure --prefix=/home/ngircd/ngircd
+make
+make install
+```
+
+Please see the
+[official config template](https://github.com/ngircd/ngircd/blob/master/doc/sample-ngircd.conf.tmpl)
+as well as the hardened TLS and channel modes in
+[BioTorrents.de's diffs](https://github.com/biotorrents/documentation/blob/master/docs/dl/ngircd.diff).
+
+### kana
+
+BioTorrents.de uses the sitebot
+[anniemaybytes/kana](https://github.com/anniemaybytes/kana)
+Unlike other sitebots, it needs no Gazelle database connection.
+Gazelle API integration is pending on BioTorrents.de.
+
+First do `apt install nodejs npm`, then as the kana user, `npm install node yarn`.
+Then add `$HOME/node_modules/.bin` to the user's `$PATH`.
+Create and match the file
+[`channels.json`](https://github.com/biotorrents/documentation/blob/master/docs/dl/channels.json)
+to the ngIRCd config.
+Finally, build kana with `yarn && yarn build`.
+
+A custom kana config is pending API integration.
+However, it does run out of the box:
+`node kana/dist/index.js`.
+
+A good firewall is very important because there's no sitebot ↔ IRCd authentication!
 
 ## Inside the Gazelle Toolbox
 

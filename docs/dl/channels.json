@@ -1,0 +1,36 @@
+{
+  "#announce": {
+    "join": "auto",
+    "persist": true
+  },
+
+  "#requests": {
+    "join": "auto",
+    "persist": true
+  },
+
+  "#general": {
+    "join": "auto",
+    "persist": true
+  },
+
+  "#userbots": {
+    "join": "auto",
+    "persist": true
+  },
+
+  "#support": {
+    "join": "auto",
+    "persist": true
+  },
+
+  "#staff": {
+    "join": "auto",
+    "persist": true
+  },
+
+  "#debug": {
+    "join": "auto",
+    "persist": true
+  }
+}

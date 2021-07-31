@@ -1,0 +1,198 @@
+1c1,10
+< # https://github.com/ngircd/ngircd/blob/master/doc/sample-ngircd.conf.tmpl
+---
+> #
+> # This is a sample configuration file for the ngIRCd IRC daemon, which must
+> # be customized to the local preferences and needs.
+> #
+> # Comments are started with "#" or ";".
+> #
+> # A lot of configuration options in this file start with a ";". You have
+> # to remove the ";" in front of each variable to actually set a value!
+> # The disabled variables are shown with example values for completeness only
+> # and the daemon is using compiled-in default settings.
+7a17
+> #
+12a23,24
+> 	# These settings depend on your personal preferences, so you should
+> 	# make sure that they correspond to your installation and setup!
+16c28
+< 	Name = irc.torrents.bio
+---
+> 	Name = irc.example.net
+20c32
+< 	AdminInfo1 = BioTorrents.de
+---
+> 	;AdminInfo1 = Description
+26c38
+< 	HelpFile = /home/ngircd/ngircd/share/doc/ngircd/Commands.txt
+---
+> 	;HelpFile = /home/ngircd/ngircd/share/doc/ngircd/Commands.txt
+30c42
+< 	Info = BioTorrents.de IRC
+---
+> 	Info = Server Info Text
+40c52
+< 	MotdFile = /home/ngircd/ngircd/etc/motd
+---
+> 	;MotdFile = /home/ngircd/ngircd/etc/ngircd.motd
+63c75
+< 	Ports =
+---
+> 	;Ports = 6667, 6668, 6669
+135c147
+< 	AllowedChannelTypes =
+---
+> 	;AllowedChannelTypes = #&+
+150c162
+< 	CloakHost = %x
+---
+> 	;CloakHost = cloaked.host
+155c167
+< 	CloakHostModeX = %x
+---
+> 	;CloakHostModeX = cloaked.user
+162c174
+< 	CloakUserToNick = yes
+---
+> 	;CloakUserToNick = yes
+171,177c183
+< 	#
+< 	# https://www.unrealircd.org/docs/User_modes
+< 	#
+< 	#   I - Hide online time in /WHOIS
+< 	#   i - Makes you so called 'invisible'
+< 	#   x - Gives you a hidden / cloaked hostname
+< 	DefaultUserModes = Iix
+---
+> 	;DefaultUserModes = i
+193c199
+< 	MorePrivacy = yes
+---
+> 	;MorePrivacy = no
+244c250
+< 	ScrubCTCP = yes
+---
+> 	;ScrubCTCP = no
+251c257
+< 	SyslogFacility = daemon
+---
+> 	;SyslogFacility = local1
+258c264
+< [SSL]
+---
+> ;[SSL]
+262,263d267
+< 	#
+< 	# https://github.com/ngircd/ngircd/blob/master/doc/SSL.txt
+266c270
+< 	CertFile = /home/ngircd/ngircd/etc/ssl/server-cert.pem
+---
+> 	;CertFile = /home/ngircd/ngircd/etc/ssl/server-cert.pem
+273c277
+< 	CipherList = HIGH:!aNULL:@STRENGTH:!SSLv3
+---
+> 	;CipherList = HIGH:!aNULL:@STRENGTH:!SSLv3
+278c282
+< 	DHFile = /home/ngircd/ngircd/etc/ssl/dhparam.pem
+---
+> 	;DHFile = /home/ngircd/ngircd/etc/ssl/dhparams.pem
+281c285
+< 	KeyFile = /home/ngircd/ngircd/etc/ssl/server-key.pem
+---
+> 	;KeyFile = /home/ngircd/ngircd/etc/ssl/server-key.pem
+284c288
+< 	KeyFilePassword =
+---
+> 	;KeyFilePassword = secret
+287c291
+< 	Ports = 7000
+---
+> 	;Ports = 6697, 9999
+294c298
+< 	Name = ohm
+---
+> 	;Name = TheOper
+297c301
+< 	Password =
+---
+> 	;Password = ThePwd
+303,305c307
+< 	Name = ebooks
+< 	Password =
+< 	Mask = ebooks!ebooks@localhost
+---
+> 	# More [Operator] sections, if you like ...
+381c383
+< 	Name = #announce
+---
+> 	;Name = #TheName
+384c386
+< 	Topic = New upload announces
+---
+> 	;Topic = a great topic
+389,419d390
+< 	#
+< 	# https://wiki.zandronum.com/IRC:Channel_Modes
+< 	#
+< 	# Unmoderated
+< 	#   B - Block caps
+< 	#   C - Block ctcp
+< 	#   P - Permanent
+< 	#   c - Block colors
+< 	#   f - Kickban on flood
+< 	#   i - Invite only
+< 	#   j - Join flood protection
+< 	#   n - No external messages
+< 	#   p - Private
+< 	#   t - Topic protection
+< 	#   z - SSL users only
+< 	#
+< 	# Moderated
+< 	#   H - Channel history
+< 	#   M - Login-to-talk
+< 	#   m - Moderated / Mute
+< 	#   u - Auditorium
+< 	#
+< 	# Hidden
+< 	#   O - Opers only
+< 	#   k - Key
+< 	#   l 10 - Limit user count
+< 	#   s - Secret
+< 	Modes = +BCPcfjnptzHMmu
+< 	;Modes = +BCPcfijnptz
+< 
+< 	# Default options
+428,457c399
+< 	Name = #requests
+< 	Topic = Unused as of 2020-12-06
+< 	Modes = +BCPcfjnptzHMmu
+< 
+< [Channel]
+< 	Name = #general
+< 	Topic = The usual chit-chat
+< 	Modes = +BCPcfjnptz
+< 
+< [Channel]
+< 	Name = #userbots
+< 	Topic = Member IRC bots live here
+< 	Modes = +BCPcfjnptz
+< 
+< [Channel]
+< 	Name = #support
+< 	Topic = Use /help or join Slack
+< 	Modes = +BCPcfjnptz
+< 
+< [Channel]
+< 	Name = #staff
+< 	Topic = Secret clubhouse
+< 	Modes = +BCPcfijnstzmO
+< 	Modes = +k
+< 
+< [Channel]
+< 	Name = #debug
+< 	Topic = Gazelle error logging
+< 	Modes = +BCPcfijnstzmO
+< 	Modes = +k
+---
+> 	# More [Channel] sections, if you like ...

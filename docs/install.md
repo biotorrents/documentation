@@ -224,8 +224,8 @@ The basic PHP package:
 The PHP extensions.
 There are two PHP memcached extensions.
 The correct one is just `php-memcache` without the "d."
-Your distro may require other extensions:
-`php-apcu php-mbstring php-memcache php-mysql`.
+The full extension list is managed in
+[composer.json](https://github.com/biotorrents/gazelle/blob/development/composer.json).
 
 BioTorrents.de also supports the
 [Seqhash algorithm](https://blog.libredna.org/post/seqhash/)
@@ -502,8 +502,7 @@ Finally, build kana with `yarn && yarn build`.
 A custom kana config is pending API integration.
 However, it does run out of the box:
 `node kana/dist/index.js`.
-
-A good firewall is very important because there's no sitebot ↔ IRCd authentication!
+A good firewall is very important because there's no sitebot IRCd authentication!
 
 ## Inside the Gazelle Toolbox
 

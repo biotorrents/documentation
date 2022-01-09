@@ -54,9 +54,9 @@ APT::Install-Suggests "0";
 Then upgrade the system:
 
 ```shell
-# apt update
-# apt dist-upgrade
-# reboot
+apt update
+apt dist-upgrade
+reboot
 ```
 
 Further server setup, including DNS, email, etc., are beyond this guide's scope.
@@ -70,57 +70,10 @@ Install Nginx and Certbot with `apt install nginx certbot python3-certbot-nginx`
 The basic Gazelle Nginx config should look similar to this.
 You'll likely have to change the file paths based on your setup.
 Also, PHP-FPM may need larger buffers, as in this example, to serve without 502 errors.
-The `client_max_body_size` should match `php.ini` and accomodate large torrents:
-
-```nginx
-server {
-        listen 443 ssl http2;
-        root /var/www/html/dev.biotorrents.de;
-
-        client_max_body_size 4M;
-        server_name dev.biotorrents.de dev.torrents.bio;
-
-        ssl_certificate /etc/letsencrypt/live/torrents.bio/fullchain.pem; # managed by Certbot
-        ssl_certificate_key /etc/letsencrypt/live/torrents.bio/privkey.pem; # managed by Certbot
-
-        access_log off;
-        error_log  /var/log/nginx/dev.biotorrents.de-error.log;
-
-        location / {
-                index index.php;
-        }
-
-        # https://www.nginx.com/resources/wiki/start/topics/examples/phpfcgi/
-        location ~ [^/]\.php(/|$) {
-                fastcgi_split_path_info ^(.+?\.php)(/.*)$;
-                if (!-f $document_root$fastcgi_script_name) {
-                        return 404;
-                }
-
-                # Mitigate https://httpoxy.org/ vulnerabilities
-                fastcgi_param HTTP_PROXY "";
-
-                fastcgi_pass  unix:/var/run/php/php7.4-fpm.sock;
-                fastcgi_index index.php;
-
-                # include the fastcgi_param setting
-                include /etc/nginx/params/fastcgi_params;
-
-                # https://stackoverflow.com/a/23845727
-                fastcgi_buffers 16 16k;
-                fastcgi_buffer_size 32k;
-        }
-
-        # https://nginx.org/en/docs/http/ngx_http_access_module.html
-        location ^~ /.git/ {
-                deny all;
-        }
-
-        location ^~ /classes/config.php {
-                deny all;
-        }
-}
-```
+The `client_max_body_size` should match `php.ini` and accomodate large torrents.
+Please see the example
+[Nginx config in the repo]
+(https://github.com/biotorrents/gazelle/blob/development/unix-config/nginx.conf).
 
 The Nginx config for the Ocelot tracker should look like this.
 Nginx acts as a TLS reverse proxy so Ocelot isn't directly exposed.
@@ -296,7 +249,8 @@ Otherwise the applications would be an insecure jumble and hard to maintain.
 
 Please use the
 [biotorrents/gazelle development branch](https://github.com/biotorrents/gazelle/tree/development)
-to grab the current working copy:
+to grab the current working copy.
+This guide assumes a development branch checkout.
 
 ```shell
 git clone --branch development https://github.com/biotorrents/gazelle.git
@@ -344,7 +298,6 @@ chown -R www-data:www-data *
 warrants its own section.
 When setting up Gazelle for the first time, set these options:
 
-- `'DEBUG_MODE' = false`
 - `'OPEN_REGISTRATION' = true`
 - `'FEATURE_SET_ENC_KEY_PUBLIC' = true`
 
@@ -388,28 +341,26 @@ mv composer.phar /var/www/bin/composer
 Then add `/var/www/bin` to the Gazelle user's `$PATH` and run:
 `composer update`.
 
+Also, `vendor/maximebf/` needs to be copied into `public/vendor/`.
+Becasue the webroot is shifted to not expose app files.
+That is, if you wish to use DebugBar.
+
 ### SCSS and fonts
 
 Install SassC with `apt install sassc`.
+Install Google Closure Compiler from
+[Maven](https://mvnrepository.com/artifact/com.google.javascript/closure-compiler).
 
 [Download the font pack](https://torrents.bio/fonts.tgz)
 and extract it with:
-`tar zxvf fonts.tgz -C /var/www/html/dev.biotorrents.de/static/styles/assets/fonts`.
+`tar zxvf fonts.tgz -C /var/www/html/dev.torrents.bio/resources/fonts`.
 
-Then install SassC with `apt install sassc`.
-This should be a for loop, to compile the CSS:
+There's a helper script called
+[build-assets.sh](https://github.com/biotorrents/gazelle/blob/development/resources/build-assets.sh)
+that will compile all the assets for you.
+Note the script expects `closure-compiler.jar` in the same directory.
 
-```shell
-#!/bin/sh
-styles="/var/www/html/dev.biotorrents.de/static/styles"
-sassc "$styles/beluga/beluga.scss" > "$styles/beluga.css"
-sassc "$styles/bookish/bookish.scss" > "$styles/bookish.css"
-sassc "$styles/development/development.scss" > "$styles/development.css"
-sassc "$styles/global/global.scss" > "$styles/global.css"
-sassc "$styles/oppai/oppai.scss" > "$styles/oppai.css"
-sassc "$styles/postmod/postmod.scss" > "$styles/postmod.css"
-sassc "$styles/public/public.scss" > "$styles/public.css"
-```
+Support for Dart Sass is planned.
 
 ## Ocelot
 

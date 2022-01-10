@@ -288,13 +288,13 @@ A useful script for resetting file permissions:
 find . -type f -print0 | xargs -0 chmod 0644
 find . -type d -print0 | xargs -0 chmod 0755
 
-chmod 600 classes/config.php
+chmod 600 config/private.php
 chown -R www-data:www-data *
 ```
 
 ### Application config
 
-[`classes/config.php`](https://github.com/biotorrents/gazelle/blob/development/classes/config.template.php)
+[`config/app.php`](https://github.com/biotorrents/gazelle/blob/development/config/app.php)
 warrants its own section.
 When setting up Gazelle for the first time, set these options:
 

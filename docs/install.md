@@ -6,7 +6,7 @@ This guide, based on the
 is an attempt at an evergreen install guide.
 It uses the format "one section per technology."
 
-# Debian system profile
+## Debian system profile
 
 ```shell
 $ uname -a
@@ -28,12 +28,12 @@ $ indexer
 Sphinx 2.2.11-id64-release (95ae9a6)
 ```
 
-# Server setup
+## Server setup
 
 This section is done as root.
 If you're in a user shell, preface commands with `sudo`.
 
-## Upgrading to Debian Sid
+### Upgrading to Debian Sid
 
 Install the most recent
 [Debian netinst image](https://www.debian.org/CD/netinst/)
@@ -63,7 +63,7 @@ Further server setup, including DNS, email, etc., are beyond this guide's scope.
 For more info about SSH, Unbound, NSD, OpenSMTPd, Dovecot, Unix users, etc.,
 [please see the original launch announcement](https://github.com/biotorrents/announcement).
 
-## Nginx and Certbot
+### Nginx and Certbot
 
 Install Nginx and Certbot with `apt install nginx certbot python3-certbot-nginx`.
 
@@ -82,14 +82,14 @@ Note the `Host` header (so tracker connections don't show up as localhost):
 ```nginx
 server {
         listen 443 ssl http2;
-        server_name tr0.biotorrents.de track.biotorrents.de track.torrents.bio;
-
+        server_name tr0.torrents.bio track.torrents.bio \
+                tr0.torrents.bio track.torrents.bio;
 
         ssl_certificate /etc/letsencrypt/live/torrents.bio/fullchain.pem; # managed by Certbot
         ssl_certificate_key /etc/letsencrypt/live/torrents.bio/privkey.pem; # managed by Certbot
 
         access_log off;
-        error_log  /var/log/nginx/tr0.biotorrents.de-error.log;
+        error_log  /var/log/nginx/tr0.torrents.bio-error.log;
 
         # https://nginx.org/en/docs/http/ngx_http_proxy_module.html
         location / {
@@ -114,7 +114,7 @@ and
 [OWASP Secure Headers Project](https://owasp.org/www-project-secure-headers/)
 for more info.
 
-## MariaDB
+### MariaDB
 
 Install MariaDB with `apt install mariadb-server`
 and initialize it with `mysql_secure_installation`.
@@ -162,13 +162,13 @@ Note that Ocelot also needs `BINLOG_ADMIN` global privileges:
 ```mysql
 CREATE DATABASE gazelle_development;
 USE gazelle_development;
-SOURCE /var/www/html/dev.biotorrents.de/gazelle.sql;
+SOURCE /var/www/html/dev.torrents.bio/gazelle.sql;
 CREATE USER 'gazelle_development'@'localhost' IDENTIFIED BY '';
 GRANT ALL PRIVILEGES ON `gazelle_development`.* TO 'gazelle_development'@'localhost';
 GRANT BINLOG ADMIN ON *.* TO 'gazelle_development'@'localhost';
 ```
 
-## PHP
+### PHP
 
 Install PHP and the necessary extensions.
 The basic PHP package:
@@ -191,7 +191,7 @@ except that `short_open_tag = On` is still required.
 I strongly recommend crafting a
 [secure PHP config](https://cheatsheetseries.owasp.org/cheatsheets/PHP_Configuration_Cheat_Sheet.html).
 
-## memcached
+### memcached
 
 Install memcached with `apt install memcached`.
 
@@ -217,7 +217,7 @@ A helper script to quickly bring up a second memcached as root:
 memcached -d -m 5120 -s /var/run/memcached/memcached-dev.sock -a 0777 -t16 -C -u memcache
 ```
 
-## Sphinx
+### Sphinx
 
 Install Sphinx with `apt install sphinxsearch`.
 
@@ -233,19 +233,19 @@ The only other Sphinx-related configs are root crontab entries:
 7 0,12 * * * indexer -c /etc/sphinxsearch/sphinx.conf --rotate --all >/dev/null 2>&1
 ```
 
-## Email
+### Email
 
 Email setup is beyond this guide's scope.
 Please see
 [Gilles's OpenSMTPd and Dovecot guide](https://poolp.org/posts/2019-09-14/setting-up-a-mail-server-with-opensmtpd-dovecot-and-rspamd/).
 
-# Application setup
+## Application setup
 
 This section should use a separate Unix user for each component.
 Gazelle, Ocelot, IRC, and sitebot should each have their own home folder and shell.
 Otherwise the applications would be an insecure jumble and hard to maintain.
 
-## Gazelle
+### Gazelle
 
 Please use the
 [biotorrents/gazelle development branch](https://github.com/biotorrents/gazelle/tree/development)
@@ -277,8 +277,8 @@ Expect to have backups in place by this stage,
 and note that server backups are beyond this guide's scope:
 
 ```crontab
-0,15,30,45 * * * * curl -s "https://dev.biotorrents.de/schedule.php?key=00000000000000000000000000000000" >> /var/www/log/development/schedule.log 2>&1
-2-59/5 * * * * php /var/www/html/dev.biotorrents.de/peerupdate.php "00000000000000000000000000000000" >> /var/www/log/development/peerupdate.log
+0,15,30,45 * * * * curl -s "https://dev.torrents.bio/schedule.php?key=00000000000000000000000000000000" >> /var/www/log/development/schedule.log 2>&1
+2-59/5 * * * * php /var/www/html/dev.torrents.bio/peerupdate.php "00000000000000000000000000000000" >> /var/www/log/development/peerupdate.log
 ```
 
 A useful script for resetting file permissions:
@@ -292,7 +292,7 @@ chmod 600 config/private.php
 chown -R www-data:www-data *
 ```
 
-### Application config
+#### Application config
 
 [`config/app.php`](https://github.com/biotorrents/gazelle/blob/development/config/app.php)
 warrants its own section.
@@ -315,7 +315,7 @@ Please pay attention to these values for proper functionality:
 - The "Tracker" and "Tracker URLs" sections
 - `MEMCACHED_SERVERS`
 
-### Composer
+#### Composer
 
 If you'd like to disable BioPHP support and remove the php-blake3 dependency,
 please set `FEATURE_BIOPHP` to false and remove this line from `composer.json`:
@@ -345,7 +345,7 @@ Also, `vendor/maximebf/` needs to be copied into `public/vendor/`.
 Becasue the webroot is shifted to not expose app files.
 That is, if you wish to use DebugBar.
 
-### SCSS and fonts
+#### SCSS and fonts
 
 Install SassC with `apt install sassc`.
 Install Google Closure Compiler from
@@ -362,7 +362,7 @@ Note the script expects `closure-compiler.jar` in the same directory.
 
 Support for Dart Sass is planned.
 
-## Ocelot
+### Ocelot
 
 BioTorrents.de uses What.CD's Ocelot with the
 [10th anniversary mixtape patches](https://twitter.com/whatcd/status/923942203080273921)
@@ -405,13 +405,13 @@ Copy and edit `ocelot/ocelot.conf.dist` to the Ocelot user's home folder.
 The daemon runs on `localhost:34000` and Nginx TLS reverse proxies it to `localhost:443`.
 The Ocelot daemon runs in a tmux window under as a user process.
 
-## IRC and sitebot
+### IRC and sitebot
 
 Gazelle is agnostic to the IRCd because it only sends raw commands.
 This can be disabled by setting `FEATURE_IRC` to false.
 However, the sitebot and daemon are usually paired.
 
-### ngIRCd
+#### ngIRCd
 
 I prefer to keep IRC locked down and well distanced,
 given its insecurity and use as a botnet C&C platform.
@@ -436,7 +436,7 @@ Please see the
 as well as the hardened TLS and channel modes in
 [BioTorrents.de's diffs](https://github.com/biotorrents/documentation/blob/master/docs/dl/ngircd.diff).
 
-### kana
+#### kana
 
 BioTorrents.de uses the sitebot
 [anniemaybytes/kana](https://github.com/anniemaybytes/kana)
@@ -455,7 +455,7 @@ However, it does run out of the box:
 `node kana/dist/index.js`.
 A good firewall is very important because there's no sitebot IRCd authentication!
 
-## Inside the Gazelle Toolbox
+### Inside the Gazelle Toolbox
 
 At this point it should be possible to register for the site.
 The first account is the sysop so please act quickly here.
@@ -485,7 +485,7 @@ LibTorrent 0.1x.y also covers rTorrent/ruTorrent and other clients that use
 For more BitTorrent info see
 [Calomel's rTorrent hacking guide](https://calomel.org/rtorrent_mods.html).
 
-## Building these docs
+### Building these docs
 
 [biotorrents/documentation](https://github.com/biotorrents/documentation)
 has the Mkdocs source code.

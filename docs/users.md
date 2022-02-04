@@ -264,7 +264,7 @@ Endpoints that only fetch info about your own account.
 
 ## Inbox
 
-The current example isn't from the [BioTorrents.de](https://biotorrents.de) database.
+The current example isn't from the [BioTorrents.de](https://torrents.bio) database.
 
 **Request**
 
@@ -311,7 +311,7 @@ The current example isn't from the [BioTorrents.de](https://biotorrents.de) data
 
 ## Conversation
 
-The current example isn't from the [BioTorrents.de](https://biotorrents.de) database.
+The current example isn't from the [BioTorrents.de](https://torrents.bio) database.
 
 **Request**
 
@@ -449,7 +449,7 @@ Fetch new upload filter notifications.
         "Global": {
             "id": 0,
             "message": "Global Notification",
-            "url": "https://docs.biotorrents.de",
+            "url": "https://docs.torrents.bio",
             "importance": "information"
         },
         # etc.

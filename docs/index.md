@@ -1,4 +1,4 @@
-The JSON API provides an easily parseable interface to [BioTorrents.de](https://biotorrents.de).
+The JSON API provides an easily parseable interface to [BioTorrents.de](https://torrents.bio).
 Please use the navigation menu to find lists of endpoints, their arguments, and example responses.
 
 # Introduction
@@ -32,14 +32,14 @@ It's functionally a password, and like a password, it can't be recovered later.
 Then POST an RFC 6750–compliant bearer token along with each GET request:
 
 ```sh
-curl biotorrents.de/api.php?action=index \
+curl https://torrents.bio/api.php?action=index \
   -H "Accept: application/json" \
   -H "Authorization: Bearer {token}"
 ```
 
 ## Cookie auth
 
-Please send a POST request to `https://biotorrents.de/login.php` with `username` and `password`,
+Please send a POST request to `https://torrents.bio/login.php` with `username` and `password`,
 or acquire a cookie from a browser session using the developer tools.
 Then store the cookie and use it to access the rest of the API.
 

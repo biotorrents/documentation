@@ -158,7 +158,7 @@ Endpoints related to torrents.
 
 ## Browse (search)
 
-Note that [BioTorrents.de](https://biotorrents.de) still uses Oppaitime metadata behind the scenes.
+Note that [BioTorrents.de](https://torrents.bio) still uses Oppaitime metadata behind the scenes.
 These docs are also adapted from What.CD, an older and different distribution.
 The advanced search options are certain to change in the future.
 

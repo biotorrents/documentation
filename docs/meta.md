@@ -1,6 +1,6 @@
 # Meta
 
-Endpoints related to [BioTorrents.de](https://biotorrents.de) itself.
+Endpoints related to [BioTorrents.de](https://torrents.bio) itself.
 
 ## Index
 
